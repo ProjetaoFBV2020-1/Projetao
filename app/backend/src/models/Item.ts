@@ -1,20 +1,30 @@
-import { uuidv } from 'uuidv4';
-import { Timestamp } from 'typeorm';
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
+@Entity('itens')
 class Item {
-    idItem: string;
+    @PrimaryGeneratedColumn('uuid')
+    id_item: string;
 
+    @Column()
     name: string;
 
-    description: st;
+    @Column()
+    description: string;
 
-    image: ;
+    @Column()
+    image: string;
 
-    createdAt: Date;
+    @CreateDateColumn()
+    created_at: Date;
 
-    ModifiedAt: Date;
-
-    constructor(){
-
-    }
+    @UpdateDateColumn()
+    updated_at: Date;
 }
+
+export default Item;

@@ -1,41 +1,39 @@
-import { uuid } from 'uuidv4';
-import { Timestamp } from 'typeorm';
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
+@Entity('companies')
 class Company {
-    idCompany: string;
+    @PrimaryGeneratedColumn('uuid')
+    id_company: string;
 
+    @Column()
     cnpj: string;
 
+    @Column()
     companyName: string;
 
+    @Column()
     tradeName: string;
 
+    @Column()
     email: string;
 
+    @Column()
     whatsapp: string;
 
+    @Column()
     password: string;
 
-    createdAt: Timestamp;
+    @CreateDateColumn()
+    created_at: Date;
 
-    modifiedAt: Timestamp;
-
-    constructor({
-        cnpj,
-        companyName,
-        tradeName,
-        email,
-        whatsapp,
-        password,
-    }: Omit<Company, 'id_company, created_at, modified_at'>) {
-        this.idCompany = uuid();
-        this.cnpj = cnpj;
-        this.companyName = companyName;
-        this.tradeName = tradeName;
-        this.email = email;
-        this.whatsapp = whatsapp;
-        this.password = password;
-        this.createdAt = ;
-        this.modifiedAt = ;
-    }
+    @UpdateDateColumn()
+    updated_at: Date;
 }
+
+export default Company;
