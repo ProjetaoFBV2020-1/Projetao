@@ -4,7 +4,9 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToMany,
 } from 'typeorm';
+import AdressCostumer from './AdressCostumer';
 
 @Entity('costumers')
 class Customer {
@@ -25,6 +27,12 @@ class Customer {
 
     @Column()
     password: string;
+
+    @Column()
+    phone: string;
+
+    @OneToMany(() => AdressCostumer, adress => adress.costumer_id)
+    adresses: AdressCostumer[];
 
     @CreateDateColumn()
     created_at: Date;

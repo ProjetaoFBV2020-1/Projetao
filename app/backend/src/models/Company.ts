@@ -4,7 +4,9 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToMany,
 } from 'typeorm';
+import PhoneCompany from './PhoneCompany';
 
 @Entity('companies')
 class Company {
@@ -24,7 +26,10 @@ class Company {
     email: string;
 
     @Column()
-    whatsapp: string;
+    adress: string;
+
+    @OneToMany(() => PhoneCompany, phone => phone.company_id)
+    phones: PhoneCompany[];
 
     @Column()
     password: string;

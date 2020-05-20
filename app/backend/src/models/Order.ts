@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import Order_item from './Order_item';
 
-@Entity('ordens')
+@Entity('orders')
 class Order {
     @PrimaryGeneratedColumn('uuid')
     id_order: string;
@@ -16,7 +16,7 @@ class Order {
     @Column()
     status: string;
 
-    @OneToMany(type => Order_item, order_item => ordem_item.order_id)
+    @OneToMany(() => Order_item, order_item => order_item.order_id)
     order_itens: Order_item[];
 
     @CreateDateColumn()

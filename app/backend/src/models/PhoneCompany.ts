@@ -1,21 +1,15 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('order_itens')
-class Order_item {
+@Entity('phones')
+class PhoneCompany {
     @Column()
-    order_id: string;
+    company_id: string;
 
     @Column()
-    item_id: string;
+    number: string;
 
     @Column()
-    valor_prato: number;
-
-    @Column()
-    valor_total: number;
-
-    @Column()
-    descricao: string;
+    type: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -24,4 +18,4 @@ class Order_item {
     updated_at: Date;
 }
 
-export default Order_item;
+export default PhoneCompany;
