@@ -5,8 +5,10 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToMany,
+    OneToOne,
 } from 'typeorm';
 import PhoneCompany from './PhoneCompany';
+import AdressCompany from './AdressCompany';
 
 @Entity('companies')
 class Company {
@@ -17,16 +19,16 @@ class Company {
     cnpj: string;
 
     @Column()
-    companyName: string;
+    company_name: string;
 
     @Column()
-    tradeName: string;
+    trade_name: string;
 
     @Column()
     email: string;
 
-    @Column()
-    adress: string;
+    @OneToOne(() => AdressCompany, adress => adress.company_id)
+    adresses: AdressCompany;
 
     @OneToMany(() => PhoneCompany, phone => phone.company_id)
     phones: PhoneCompany[];

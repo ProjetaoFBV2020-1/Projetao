@@ -1,9 +1,24 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Entity,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    PrimaryColumn,
+} from 'typeorm';
 
-@Entity('adresses_costumer')
+@Entity('adresses_custumer')
 class AdressCostumer {
+    @PrimaryColumn()
+    customer_id: string;
+
     @Column()
-    costumer_id: string;
+    state: string;
+
+    @Column()
+    city: string;
+
+    @Column()
+    neighborhood: string;
 
     @Column()
     street: string;
@@ -12,16 +27,10 @@ class AdressCostumer {
     number: string;
 
     @Column()
-    neighborhood: string;
-
-    @Column()
-    city: string;
+    complement: string;
 
     @Column()
     reference: string;
-
-    @Column()
-    complement: string;
 
     @CreateDateColumn()
     created_at: Date;

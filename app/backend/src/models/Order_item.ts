@@ -1,21 +1,27 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Entity,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    PrimaryColumn,
+} from 'typeorm';
 
-@Entity('order_itens')
+@Entity('order_items')
 class Order_item {
-    @Column()
+    @PrimaryColumn()
     order_id: string;
 
     @Column()
     item_id: string;
 
     @Column()
-    valor_prato: number;
+    item_value: number;
 
     @Column()
-    valor_total: number;
+    total_value: number;
 
     @Column()
-    descricao: string;
+    description: string;
 
     @CreateDateColumn()
     created_at: Date;

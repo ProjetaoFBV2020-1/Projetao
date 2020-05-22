@@ -1,8 +1,14 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Entity,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    PrimaryColumn,
+} from 'typeorm';
 
-@Entity('phones')
+@Entity('phones_companies')
 class PhoneCompany {
-    @Column()
+    @PrimaryColumn()
     company_id: string;
 
     @Column()

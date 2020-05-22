@@ -6,13 +6,16 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('itens')
+@Entity('items')
 class Item {
     @PrimaryGeneratedColumn('uuid')
     id_item: string;
 
     @Column()
     name: string;
+
+    @Column()
+    value: number;
 
     @Column()
     description: string;

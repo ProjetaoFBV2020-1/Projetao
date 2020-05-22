@@ -8,13 +8,10 @@ import {
 } from 'typeorm';
 import AdressCostumer from './AdressCostumer';
 
-@Entity('costumers')
+@Entity('customers')
 class Customer {
     @PrimaryGeneratedColumn('uuid')
     id_customer: string;
-
-    @Column()
-    cpf: string;
 
     @Column()
     name: string;
@@ -31,14 +28,14 @@ class Customer {
     @Column()
     phone: string;
 
-    @OneToMany(() => AdressCostumer, adress => adress.costumer_id)
+    @OneToMany(() => AdressCostumer, adress => adress.customer_id)
     adresses: AdressCostumer[];
 
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
-    modified_at: Date;
+    updated_at: Date;
 }
 
 export default Customer;

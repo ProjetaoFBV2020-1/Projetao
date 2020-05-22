@@ -17,7 +17,7 @@ class Order {
     status: string;
 
     @OneToMany(() => Order_item, order_item => order_item.order_id)
-    order_itens: Order_item[];
+    order_items: Order_item[];
 
     @CreateDateColumn()
     created_at: Date;
