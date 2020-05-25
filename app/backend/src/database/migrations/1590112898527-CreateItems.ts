@@ -7,18 +7,22 @@ export default class CreateItems1590112898527 implements MigrationInterface {
                 name: 'items',
                 columns: [
                     {
-                        name: 'id_customer',
+                        name: 'id_item',
                         type: 'uuid',
                         isPrimary: true,
                         generationStrategy: 'uuid',
                         default: 'uuid_generate_v4()',
                     },
                     {
+                        name: 'company_id',
+                        type: 'uuid',
+                    },
+                    {
                         name: 'name',
                         type: 'varchar',
                     },
                     {
-                        name: 'price',
+                        name: 'value',
                         type: 'decimal',
                     },
                     {
@@ -28,6 +32,7 @@ export default class CreateItems1590112898527 implements MigrationInterface {
                     {
                         name: 'image',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',

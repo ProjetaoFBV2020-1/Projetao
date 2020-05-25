@@ -9,7 +9,7 @@ import CreateCostumerService from '../services/CreateCostumerService';
 const costumersRouter = Router();
 
 costumersRouter.post('/', async (request, response) => {
-    const { cpf, name, email, date_birth, password, phone } = request.body;
+    const { name, email, date_birth, password, phone } = request.body;
 
     const date_birth_convert = parseISO(date_birth);
 
@@ -20,7 +20,6 @@ costumersRouter.post('/', async (request, response) => {
         email,
         date_birth: date_birth_convert,
         password,
-        cpf,
         phone,
     });
 

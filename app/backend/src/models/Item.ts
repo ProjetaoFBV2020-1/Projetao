@@ -12,6 +12,9 @@ class Item {
     id_item: string;
 
     @Column()
+    company_id: string;
+
+    @Column()
     name: string;
 
     @Column()

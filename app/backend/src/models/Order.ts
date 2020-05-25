@@ -14,16 +14,22 @@ class Order {
     id_order: string;
 
     @Column()
-    status: string;
+    company_id: string;
 
-    @OneToMany(() => Order_item, order_item => order_item.order_id)
-    order_items: Order_item[];
+    @Column()
+    customer_id: string;
+
+    @Column()
+    status: string;
 
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @OneToMany(() => Order_item, order_item => order_item.order_id)
+    order_items: Order_item[];
 }
 
 export default Order;

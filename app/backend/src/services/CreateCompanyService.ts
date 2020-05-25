@@ -7,8 +7,8 @@ import AdressCompany from '../models/AdressCompany';
 
 interface Request {
     cnpj: string;
-    companyName: string;
-    tradeName: string;
+    company_name: string;
+    trade_name: string;
     email: string;
 
     adress: AdressCompany;
@@ -23,8 +23,8 @@ interface Response {
 class CreateCompanyService {
     public async execute({
         cnpj,
-        companyName,
-        tradeName,
+        company_name,
+        trade_name,
         email,
         password,
         adress,
@@ -58,8 +58,8 @@ class CreateCompanyService {
 
         const company = companyRepository.create({
             cnpj,
-            companyName,
-            tradeName,
+            company_name,
+            trade_name,
             email,
             password: hashedPassword,
         });

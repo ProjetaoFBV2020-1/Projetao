@@ -14,15 +14,19 @@ export default class CreateOrder1590113490640 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
                     {
+                        name: 'company_id',
+                        type: 'uuid',
+                    },
+                    {
+                        name: 'customer_id',
+                        type: 'uuid',
+                    },
+                    {
                         name: 'status',
                         type: 'varchar',
                     },
                     {
                         name: 'description',
-                        type: 'varchar',
-                    },
-                    {
-                        name: 'image',
                         type: 'varchar',
                     },
                     {

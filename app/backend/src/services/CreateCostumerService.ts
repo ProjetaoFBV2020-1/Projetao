@@ -4,7 +4,6 @@ import Costumer from '../models/Customer';
 import AppError from '../errors/AppError';
 
 interface Request {
-    cpf: string;
     name: string;
     email: string;
     password: string;
@@ -14,7 +13,6 @@ interface Request {
 
 class CreateCostumerService {
     public async execute({
-        cpf,
         name,
         date_birth,
         email,
@@ -22,11 +20,6 @@ class CreateCostumerService {
         phone,
     }: Request): Promise<Costumer> {
         const costumersRepository = getRepository(Costumer);
-        const sameCpf = await costumersRepository.findOne({ where: cpf });
-
-        if (sameCpf) {
-            throw new AppError('cpf already in use', 400);
-        }
 
         const sameEmail = await costumersRepository.findOne({ where: email });
 
@@ -43,12 +36,11 @@ class CreateCostumerService {
         const hashedPassword = await hash(password, 8);
 
         const costumer = costumersRepository.create({
-            cpf,
+            name,
             email,
             date_birth,
-            name,
-            phone,
             password: hashedPassword,
+            phone,
         });
 
         await costumersRepository.save(costumer);

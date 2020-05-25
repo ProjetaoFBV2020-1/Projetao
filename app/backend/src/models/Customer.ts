@@ -6,7 +6,8 @@ import {
     UpdateDateColumn,
     OneToMany,
 } from 'typeorm';
-import AdressCostumer from './AdressCostumer';
+import Order from './Order';
+import AdressCustomer from './AdressCustomer';
 
 @Entity('customers')
 class Customer {
@@ -28,14 +29,20 @@ class Customer {
     @Column()
     phone: string;
 
-    @OneToMany(() => AdressCostumer, adress => adress.customer_id)
-    adresses: AdressCostumer[];
-
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @OneToMany(() => Order, orders => orders.customer_id)
+    orders: Order;
+
+    @OneToMany(
+        () => AdressCustomer,
+        adresses_customer => adresses_customer.customer_id,
+    )
+    adresses: AdressCustomer[];
 }
 
 export default Customer;

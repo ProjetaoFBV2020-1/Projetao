@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 // import { parseISO } from 'date-fns';
 // import { getCustomRepository } from 'typeorm';
 
@@ -14,8 +15,8 @@ const companiesRouter = Router();
 companiesRouter.post('/', async (request, response) => {
     const {
         cnpj,
-        companyName,
-        tradeName,
+        company_name,
+        trade_name,
         email,
         password,
         adress,
@@ -26,9 +27,9 @@ companiesRouter.post('/', async (request, response) => {
 
     const { company, adressCompany } = await createCompanyService.execute({
         cnpj,
-        companyName,
+        company_name,
+        trade_name,
         email,
-        tradeName,
         password,
         phones,
         adress,
