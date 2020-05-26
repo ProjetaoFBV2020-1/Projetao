@@ -31,19 +31,28 @@ class CreateCompanyService {
         phones,
     }: Request): Promise<Response> {
         const companyRepository = getRepository(Company);
-        const sameCnpj = await companyRepository.findOne({ where: cnpj });
+
+        const sameCnpj = await companyRepository.findOne({
+            where: { cnpj },
+        });
 
         if (sameCnpj) {
             throw new AppError('cnpj already in use', 400);
         }
 
-        const sameEmail = await companyRepository.findOne({ where: email });
+        const sameEmail = await companyRepository.findOne({ where: { email } });
 
         if (sameEmail) {
             throw new AppError('email already in use', 400);
         }
 
         const phoneCompanyRepository = getRepository(PhoneCompany);
+
+        /* for (let i = 0; i < phones.length; i++) {
+            if (phones[i].number === phones[i - 1].number) {
+
+            }
+        } */
 
         phones.forEach(async phone => {
             const samePhone = await phoneCompanyRepository.findOne({
@@ -72,12 +81,14 @@ class CreateCompanyService {
                 number: phone.number,
                 type: phone.type,
             });
+
             await phoneCompanyRepository.save(phoneCompany);
         });
 
         const adressRepository = getRepository(AdressCompany);
         const adressCompany = adressRepository.create({
             company_id: company.id_company,
+            state: adress.state,
             street: adress.street,
             number: adress.number,
             neighborhood: adress.neighborhood,

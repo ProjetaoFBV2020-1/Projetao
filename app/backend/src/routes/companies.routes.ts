@@ -1,43 +1,38 @@
-import { Router } from 'express';
-
-// import { parseISO } from 'date-fns';
-// import { getCustomRepository } from 'typeorm';
-
-// import AppointmentsRepository from '../Repositories/AppointmentsRepository';
+import Router from 'express';
 import CreateCompanyService from '../services/CreateCompanyService';
-
-// import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const companiesRouter = Router();
 
-// appointmentsRouter.use(ensureAuthenticated);
-
 companiesRouter.post('/', async (request, response) => {
-    const {
-        cnpj,
-        company_name,
-        trade_name,
-        email,
-        password,
-        adress,
-        phones,
-    } = request.body;
+    try {
+        const {
+            cnpj,
+            company_name,
+            trade_name,
+            email,
+            password,
+            adress,
+            phones,
+        } = request.body;
 
-    const createCompanyService = new CreateCompanyService();
+        const createCompany = new CreateCompanyService();
 
-    const { company, adressCompany } = await createCompanyService.execute({
-        cnpj,
-        company_name,
-        trade_name,
-        email,
-        password,
-        phones,
-        adress,
-    });
+        const { company, adressCompany } = await createCompany.execute({
+            cnpj,
+            company_name,
+            trade_name,
+            email,
+            password,
+            phones,
+            adress,
+        });
 
-    delete company.password;
+        delete company.password;
 
-    return response.json({ company, adressCompany });
+        return response.json({ company, adressCompany });
+    } catch (err) {
+        return response.status(400).json({ error: err.message });
+    }
 });
 
 export default companiesRouter;
