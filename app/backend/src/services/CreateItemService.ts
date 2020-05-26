@@ -6,20 +6,24 @@ import Item from '../models/Item';
 interface Request {
     company_id: string;
     name: string;
-    value: number;
+    price: number;
     description: string;
+    image: string;
 }
 
 class CreateItemService {
     public async execute({
         company_id,
         name,
-        value,
+        price,
         description,
+        image,
     }: Request): Promise<Item> {
         const itemsRepository = getRepository(Item);
 
-        const sameName = await itemsRepository.findOne({ where: name });
+        const sameName = await itemsRepository.findOne({
+            where: { name, company_id },
+        });
 
         if (sameName) {
             throw new AppError('Item with the same name already exists. ', 400);
@@ -28,8 +32,9 @@ class CreateItemService {
         const item = itemsRepository.create({
             company_id,
             name,
-            value,
+            price,
             description,
+            image,
         });
 
         await itemsRepository.save(item);

@@ -14,9 +14,9 @@ interface Request {
 
 class UpdateUserAvatarService {
     public async execute({ id_item, imageFilename }: Request): Promise<Item> {
-        const usersRepository = getRepository(Item);
+        const itemsRepository = getRepository(Item);
 
-        const item = await usersRepository.findOne(id_item);
+        const item = await itemsRepository.findOne(id_item);
 
         if (!item) {
             throw new AppError(
@@ -26,8 +26,7 @@ class UpdateUserAvatarService {
         }
 
         if (item.image) {
-            // Verificar se o imagem já existe, se existir, deleta a anterior e insere uma novo.
-
+            // Verificar se o imagem já existe, se existir, deleta a anterior e insere uma nova.
             const itemImageFilePath = path.join(
                 uploadConfig.directory,
                 item.image,
@@ -43,7 +42,7 @@ class UpdateUserAvatarService {
 
         item.image = imageFilename;
 
-        await usersRepository.save(item);
+        await itemsRepository.save(item);
 
         return item;
     }

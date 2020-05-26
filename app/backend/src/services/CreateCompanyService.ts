@@ -32,6 +32,7 @@ class CreateCompanyService {
     }: Request): Promise<Response> {
         const companyRepository = getRepository(Company);
 
+        // Valida se já existe um mesmo cnpj cadastrado
         const sameCnpj = await companyRepository.findOne({
             where: { cnpj },
         });
@@ -40,6 +41,7 @@ class CreateCompanyService {
             throw new AppError('cnpj already in use', 400);
         }
 
+        // Valida se já existe um mesmo e-mail cadastrado
         const sameEmail = await companyRepository.findOne({ where: { email } });
 
         if (sameEmail) {
@@ -48,15 +50,17 @@ class CreateCompanyService {
 
         const phoneCompanyRepository = getRepository(PhoneCompany);
 
-        /* for (let i = 0; i < phones.length; i++) {
+        // Varre o array de telefones que está sendo enviado na request e verifica se tem algum igual dentro da requisição
+        for (let i = 1; i < phones.length; i += 1) {
             if (phones[i].number === phones[i - 1].number) {
-
+                throw new AppError('Equal phone numbers being inserted.');
             }
-        } */
+        }
 
+        // Valida se já existe algum telefone no banco de dados, igual o que está tentando inserir
         phones.forEach(async phone => {
             const samePhone = await phoneCompanyRepository.findOne({
-                where: phone.number,
+                where: `${phone.number}`,
             });
             if (samePhone) {
                 throw new AppError(`${phone.number} is already in use`);
@@ -86,6 +90,7 @@ class CreateCompanyService {
         });
 
         const adressRepository = getRepository(AdressCompany);
+
         const adressCompany = adressRepository.create({
             company_id: company.id_company,
             state: adress.state,

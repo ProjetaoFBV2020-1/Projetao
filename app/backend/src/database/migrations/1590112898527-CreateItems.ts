@@ -22,7 +22,7 @@ export default class CreateItems1590112898527 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
-                        name: 'value',
+                        name: 'price',
                         type: 'decimal',
                     },
                     {

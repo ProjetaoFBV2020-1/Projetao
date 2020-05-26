@@ -18,7 +18,7 @@ class Item {
     name: string;
 
     @Column()
-    value: number;
+    price: number;
 
     @Column()
     description: string;

@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
-import Costumer from '../models/Customer';
+import Customer from '../models/Customer';
 import AppError from '../errors/AppError';
 
 interface Request {
@@ -14,20 +14,24 @@ interface Request {
 class CreateCostumerService {
     public async execute({
         name,
-        date_birth,
         email,
+        date_birth,
         password,
         phone,
-    }: Request): Promise<Costumer> {
-        const costumersRepository = getRepository(Costumer);
+    }: Request): Promise<Customer> {
+        const costumersRepository = getRepository(Customer);
 
-        const sameEmail = await costumersRepository.findOne({ where: email });
+        const sameEmail = await costumersRepository.findOne({
+            where: { email },
+        });
 
         if (sameEmail) {
             throw new AppError('email already in use', 400);
         }
 
-        const samePhone = await costumersRepository.findOne({ where: phone });
+        const samePhone = await costumersRepository.findOne({
+            where: { phone },
+        });
 
         if (samePhone) {
             throw new AppError('phone already in use', 400);
