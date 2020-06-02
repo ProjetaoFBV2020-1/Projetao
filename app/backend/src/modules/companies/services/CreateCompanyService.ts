@@ -1,7 +1,7 @@
-import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import Company from '../infra/typeorm/entities/Company';
 import PhoneCompany from '../infra/typeorm/entities/PhoneCompany';
 import AdressCompany from '../infra/typeorm/entities/AdressCompany';
@@ -22,6 +22,9 @@ class CreateCompanyService {
     constructor(
         @inject('CompaniesRepository')
         private companiesRepository: ICompaniesRepository,
+
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
     ) {}
 
     public async execute({
@@ -64,7 +67,7 @@ class CreateCompanyService {
             }
         }); */
 
-        const hashedPassword = await hash(password, 8);
+        const hashedPassword = await this.hashProvider.generateHash(password);
 
         const company = this.companiesRepository.create({
             cnpj,

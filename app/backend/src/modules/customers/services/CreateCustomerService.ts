@@ -1,7 +1,7 @@
-import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import Customer from '../infra/typeorm/entities/Customer';
 import ICustomersRepository from '../repositories/ICustomersRepository';
 
@@ -18,6 +18,9 @@ class CreateCustomerService {
     constructor(
         @inject('CustomersRepository')
         private customersRepository: ICustomersRepository,
+
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
     ) {}
 
     public async execute({
@@ -39,7 +42,7 @@ class CreateCustomerService {
             throw new AppError('phone already in use', 400);
         }
 
-        const hashedPassword = await hash(password, 8);
+        const hashedPassword = await this.hashProvider.generateHash(password);
 
         const customer = this.customersRepository.create({
             name,

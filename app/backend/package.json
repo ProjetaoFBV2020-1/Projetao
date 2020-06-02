@@ -26,13 +26,10 @@
     "eslint-plugin-prettier": "^3.1.3",
     "prettier": "^2.0.5",
     "tsconfig-paths": "^3.9.0",
-<<<<<<< HEAD
     "typescript": "^3.9.2",
     "jest": "^26.0.1",
     "ts-jest": "^26.0.0"
-=======
-    "typescript": "^3.9.2"
->>>>>>> 845437d89cb43a4c8df18cf473047d69df56b9b0
+
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

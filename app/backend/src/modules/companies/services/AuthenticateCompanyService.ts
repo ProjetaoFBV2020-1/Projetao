@@ -1,9 +1,9 @@
-import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import Company from '../infra/typeorm/entities/Company';
 import ICompaniesRepository from '../repositories/ICompaniesRepository';
 
@@ -21,6 +21,9 @@ class AuthenticateCompanyService {
     constructor(
         @inject('CompaniesRepository')
         private companiesRepository: ICompaniesRepository,
+
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
     ) {}
 
     public async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -32,7 +35,10 @@ class AuthenticateCompanyService {
         // company.password - Senha criptografada
         // password - Senha enviada pelo usuario
         // compare do bcrypt compara uma senha criptografa com uma não e verifica se elas são iguais
-        const passwordMatched = await compare(password, company.password);
+        const passwordMatched = await this.hashProvider.compareHash(
+            password,
+            company.password,
+        );
 
         if (!passwordMatched) {
             throw new AppError('Incorrect email/password combination', 401);
