@@ -20,11 +20,6 @@ export default function ensureAuthenticated(
         throw new AppError('JWT token is missing', 401);
     }
 
-    // Bearer 57t03b847y62b1803476b29108.2414y0817y412.3'9107y3'0917y3
-    // Split com espaço em branco para separar a palavra bearer do token
-    // A const vira um array, podendo desestruturar
-    // const [type, token] = authHeader.split(' ');
-    // Como o type não é preciso, no JS é preciso apenas a virgula
     const [, token] = authHeader.split(' ');
 
     try {
