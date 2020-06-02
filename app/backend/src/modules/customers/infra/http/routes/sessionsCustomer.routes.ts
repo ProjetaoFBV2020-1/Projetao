@@ -5,6 +5,6 @@ import SessionsCustomerController from '../controllers/SessionsCustomerControlle
 const sessionsCustomerRouter = Router();
 const sessionsCustomerController = new SessionsCustomerController();
 
-sessionsCustomerRouter.post('/costumers', sessionsCustomerController.create);
+sessionsCustomerRouter.post('/customers', sessionsCustomerController.create);
 
 export default sessionsCustomerRouter;

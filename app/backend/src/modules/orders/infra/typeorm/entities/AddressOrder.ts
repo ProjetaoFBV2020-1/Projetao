@@ -6,10 +6,10 @@ import {
     PrimaryColumn,
 } from 'typeorm';
 
-@Entity('addresses_customer')
-class AdressCustomer {
+@Entity('address_order')
+class AdressOrder {
     @PrimaryColumn()
-    customer_id: string;
+    order_id: string;
 
     @Column()
     state: string;
@@ -39,4 +39,4 @@ class AdressCustomer {
     updated_at: Date;
 }
 
-export default AdressCustomer;
+export default AdressOrder;

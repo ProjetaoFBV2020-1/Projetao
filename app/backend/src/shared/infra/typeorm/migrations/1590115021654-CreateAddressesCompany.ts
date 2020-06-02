@@ -5,7 +5,7 @@ export default class CreateAdressesCompany1590115021654
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'adresses_company',
+                name: 'addresses_company',
                 columns: [
                     {
                         name: 'company_id',

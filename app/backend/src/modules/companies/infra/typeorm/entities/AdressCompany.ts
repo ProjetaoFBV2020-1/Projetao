@@ -6,7 +6,7 @@ import {
     PrimaryColumn,
 } from 'typeorm';
 
-@Entity('adresses_company')
+@Entity('addresses_company')
 class AdressCompany {
     @PrimaryColumn()
     company_id: string;

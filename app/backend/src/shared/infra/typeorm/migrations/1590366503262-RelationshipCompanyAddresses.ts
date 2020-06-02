@@ -4,7 +4,7 @@ export default class RelationshipCompanyAddresses1590366503262
     implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createForeignKey(
-            'adresses_company',
+            'addresses_company',
             new TableForeignKey({
                 name: 'CompanyIdInAddresses',
                 columnNames: ['company_id'],
@@ -17,7 +17,7 @@ export default class RelationshipCompanyAddresses1590366503262
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropForeignKey(
-            'adresses_company',
+            'addresses_company',
             'CompanyIdInAddresses',
         );
     }
