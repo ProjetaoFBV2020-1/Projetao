@@ -6,7 +6,7 @@ import {
     UpdateDateColumn,
     OneToMany,
 } from 'typeorm';
-import Order from './Order';
+import Order from '@modules/orders/infra/typeorm/entities/Order';
 import AdressCustomer from './AdressCustomer';
 
 @Entity('customers')
