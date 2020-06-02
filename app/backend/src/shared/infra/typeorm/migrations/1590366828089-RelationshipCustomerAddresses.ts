@@ -4,7 +4,7 @@ export default class RelationshipCustomerAddresses1590366828089
     implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createForeignKey(
-            'adresses_customer',
+            'addresses_customer',
             new TableForeignKey({
                 name: 'CustomerIdInAddresses',
                 columnNames: ['customer_id'],
@@ -17,7 +17,7 @@ export default class RelationshipCustomerAddresses1590366828089
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropForeignKey(
-            'adresses_customer',
+            'addresses_customer',
             'CustomerIdInAddresses',
         );
     }

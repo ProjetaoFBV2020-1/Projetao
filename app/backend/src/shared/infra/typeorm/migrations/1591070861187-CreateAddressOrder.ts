@@ -1,38 +1,42 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateOrderItems1590114252176
+export default class CreateAdressOrder1591070861187
     implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'order_items',
+                name: 'address_order',
                 columns: [
                     {
                         name: 'order_id',
                         type: 'uuid',
                     },
                     {
-                        name: 'item_id',
-                        type: 'uuid',
+                        name: 'state',
+                        type: 'varchar',
                     },
                     {
-                        name: 'quantity',
-                        type: 'integer',
+                        name: 'city',
+                        type: 'varchar',
                     },
                     {
-                        name: 'item_value',
-                        type: 'decimal',
-                        precision: 10,
-                        scale: 2,
+                        name: 'neighborhood',
+                        type: 'varchar',
                     },
                     {
-                        name: 'total_value',
-                        type: 'decimal',
-                        precision: 10,
-                        scale: 2,
+                        name: 'street',
+                        type: 'varchar',
                     },
                     {
-                        name: 'description',
+                        name: 'number',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'complement',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'reference',
                         type: 'varchar',
                     },
                     {
@@ -51,6 +55,6 @@ export default class CreateOrderItems1590114252176
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('order_items');
+        await queryRunner.dropTable('adresses_custumer');
     }
 }

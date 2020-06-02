@@ -44,6 +44,11 @@ export default class CreateCustomer1590110438834 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()',
                     },
+                    {
+                        name: 'del_ind',
+                        type: 'boolean',
+                        default: false,
+                    },
                 ],
             }),
         );

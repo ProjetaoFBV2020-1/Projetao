@@ -46,6 +46,11 @@ export default class CreateCompanies1590112008250
                         type: 'timestamp',
                         default: 'now()',
                     },
+                    {
+                        name: 'del_ind',
+                        type: 'boolean',
+                        default: false,
+                    },
                 ],
             }),
         );

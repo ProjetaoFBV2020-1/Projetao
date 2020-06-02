@@ -57,7 +57,7 @@ class CreateCompanyService {
         // Valida se já existe algum telefone no banco de dados, igual o que está tentando inserir
         /* phones.forEach(async phone => {
             const samePhone = await phoneCompanyRepository.findOne({
-                where: `${phone.number}`,
+                where: { number: phone.number },
             });
             if (samePhone) {
                 throw new AppError(`${phone.number} is already in use`);
