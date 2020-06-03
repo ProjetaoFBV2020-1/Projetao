@@ -32,7 +32,7 @@ class UpdateUserAvatarService {
         if (item.image) {
             // Verificar se o imagem já existe, se existir, deleta a anterior e insere uma nova.
             const itemImageFilePath = path.join(
-                uploadConfig.directory,
+                uploadConfig.tmpFolder,
                 item.image,
             );
             const itemImageFileExists = await fs.promises.stat(

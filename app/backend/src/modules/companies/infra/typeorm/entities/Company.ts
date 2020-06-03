@@ -10,7 +10,7 @@ import {
 import Item from '@modules/items/infra/typeorm/entities/Item';
 import Order from '@modules/orders/infra/typeorm/entities/Order';
 import PhoneCompany from './PhoneCompany';
-import AdressCompany from './AdressCompany';
+import AddressCompany from './AddressCompany';
 
 @Entity('companies')
 class Company {
@@ -38,8 +38,8 @@ class Company {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToOne(() => AdressCompany, adress => adress.company_id)
-    adresses: AdressCompany;
+    @OneToOne(() => AddressCompany, address => address.company_id)
+    adresses: AddressCompany;
 
     @OneToMany(() => Item, items => items.company_id)
     items: Item;
