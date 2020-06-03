@@ -6,18 +6,13 @@ import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/Fak
 import FakeCompaniesRepository from '../repositories/fakes/FakeCompaniesRepository';
 
 import CreateCompanyService from './CreateCompanyService';
-import AuthenticateCompanyService from './AuthenticateCompanyService';
 
-describe('AuthenticateUser', () => {
-    it('should be able to authenticate', async () => {
+describe('CreateCompany', () => {
+    it('should be able to create a company', async () => {
         const fakeCompaniesRepository = new FakeCompaniesRepository();
         const fakeHashProvider = new FakeHashProvider();
 
         const createCompanyService = new CreateCompanyService(
-            fakeCompaniesRepository,
-            fakeHashProvider,
-        );
-        const authenticateCompanyService = new AuthenticateCompanyService(
             fakeCompaniesRepository,
             fakeHashProvider,
         );
@@ -30,40 +25,13 @@ describe('AuthenticateUser', () => {
             password: 'secretxd',
         });
 
-        const response = await authenticateCompanyService.execute({
-            email: 'test@gmail.com',
-            password: 'secretxd',
-        });
-
-        expect(response).toHaveProperty('token');
-        expect(response.company).toEqual(company);
+        expect(company).toHaveProperty('id_company');
     });
-    it('should not be able to authenticate with a non existing email', async () => {
-        const fakeCompaniesRepository = new FakeCompaniesRepository();
-        const fakeHashProvider = new FakeHashProvider();
-
-        const authenticateCompanyService = new AuthenticateCompanyService(
-            fakeCompaniesRepository,
-            fakeHashProvider,
-        );
-
-        expect(
-            authenticateCompanyService.execute({
-                email: 'non-existing-email',
-                password: 'secretxd',
-            }),
-        ).rejects.toBeInstanceOf(AppError);
-    });
-
-    it('should not be able to authenticate with a non existing email', async () => {
+    it('should not be able to create a company with cnpj already used by another', async () => {
         const fakeCompaniesRepository = new FakeCompaniesRepository();
         const fakeHashProvider = new FakeHashProvider();
 
         const createCompanyService = new CreateCompanyService(
-            fakeCompaniesRepository,
-            fakeHashProvider,
-        );
-        const authenticateCompanyService = new AuthenticateCompanyService(
             fakeCompaniesRepository,
             fakeHashProvider,
         );
@@ -77,9 +45,40 @@ describe('AuthenticateUser', () => {
         });
 
         expect(
-            authenticateCompanyService.execute({
+            createCompanyService.execute({
+                cnpj: '123456',
+                company_name: 'teste2 ltda',
+                trade_name: 'testing2',
+                email: 'test2@gmail.com',
+                password: 'secretxd',
+            }),
+        ).rejects.toBeInstanceOf(AppError);
+    });
+
+    it('should not be able to create a company with email already used by another', async () => {
+        const fakeCompaniesRepository = new FakeCompaniesRepository();
+        const fakeHashProvider = new FakeHashProvider();
+
+        const createCompanyService = new CreateCompanyService(
+            fakeCompaniesRepository,
+            fakeHashProvider,
+        );
+
+        await createCompanyService.execute({
+            cnpj: '123456',
+            company_name: 'teste ltda',
+            trade_name: 'testing',
+            email: 'test@gmail.com',
+            password: 'secretxd',
+        });
+
+        expect(
+            createCompanyService.execute({
+                cnpj: '654321',
+                company_name: 'teste2 ltda',
+                trade_name: 'testing2',
                 email: 'test@gmail.com',
-                password: 'wrongPassword',
+                password: 'secretxd',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });

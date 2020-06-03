@@ -14,8 +14,6 @@ export default class CompanyController {
             trade_name,
             email,
             password,
-            adress,
-            phones,
         } = request.body;
 
         const createCompany = container.resolve(CreateCompanyService);
@@ -26,8 +24,6 @@ export default class CompanyController {
             trade_name,
             email,
             password,
-            phones,
-            adress,
         });
 
         delete company.password;

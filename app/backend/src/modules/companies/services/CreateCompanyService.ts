@@ -3,8 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import Company from '../infra/typeorm/entities/Company';
-import PhoneCompany from '../infra/typeorm/entities/PhoneCompany';
-import AdressCompany from '../infra/typeorm/entities/AdressCompany';
+
 import ICompaniesRepository from '../repositories/ICompaniesRepository';
 
 interface IRequest {
@@ -12,9 +11,7 @@ interface IRequest {
     company_name: string;
     trade_name: string;
     email: string;
-    adress: AdressCompany;
     password: string;
-    phones: PhoneCompany[];
 }
 
 @injectable()
@@ -33,8 +30,6 @@ class CreateCompanyService {
         trade_name,
         email,
         password,
-        adress,
-        phones,
     }: IRequest): Promise<Company> {
         // Valida se já existe um cnpj cadastrado repetido
         const sameCnpj = await this.companiesRepository.findByCpnj(cnpj);
@@ -50,23 +45,6 @@ class CreateCompanyService {
             throw new AppError('email already in use', 400);
         }
 
-        // Varre o array de telefones que está sendo enviado na request e verifica se tem algum igual dentro da requisição
-        for (let i = 1; i < phones.length; i += 1) {
-            if (phones[i].number === phones[i - 1].number) {
-                throw new AppError('Equal phone numbers being inserted.');
-            }
-        }
-
-        // Valida se já existe algum telefone no banco de dados, igual o que está tentando inserir
-        /* phones.forEach(async phone => {
-            const samePhone = await phoneCompanyRepository.findOne({
-                where: { number: phone.number },
-            });
-            if (samePhone) {
-                throw new AppError(`${phone.number} is already in use`);
-            }
-        }); */
-
         const hashedPassword = await this.hashProvider.generateHash(password);
 
         const company = this.companiesRepository.create({
@@ -75,8 +53,6 @@ class CreateCompanyService {
             trade_name,
             email,
             password: hashedPassword,
-            phones,
-            adress,
         });
 
         /* phones.forEach(async phone => {
