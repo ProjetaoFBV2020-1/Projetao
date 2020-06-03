@@ -14,14 +14,15 @@ interface AuthState {
 interface AuthContextData {
   user: object;
   signIn(credentials: SignInCredentials): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const customer = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@OffTalk:token');
+    const customer = localStorage.getItem('@OffTalk:user');
     if (token && customer) {
       return { token, customer: JSON.parse(customer) };
     }
@@ -29,20 +30,27 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions/customers', {
+    const response = await api.post('sessionsCustomer', {
       email,
       password,
     });
 
     const { token, customer } = response.data;
-    localStorage.setItem('@GoBarber:token', token);
-    localStorage.setItem('@GoBarber:user', JSON.stringify(customer));
+    localStorage.setItem('@OffTalk:token', token);
+    localStorage.setItem('@OffTalk:user', JSON.stringify(customer));
 
     setData({ token, customer });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@OffTalk:token');
+    localStorage.removeItem('@OffTalk:user');
+
+    setData({} as AuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.customer, signIn }}>
+    <AuthContext.Provider value={{ user: data.customer, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

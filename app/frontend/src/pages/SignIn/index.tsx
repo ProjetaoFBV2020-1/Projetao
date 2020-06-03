@@ -4,10 +4,10 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logo_dark_mode.svg';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
