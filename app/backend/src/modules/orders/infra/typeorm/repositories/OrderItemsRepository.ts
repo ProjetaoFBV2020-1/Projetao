@@ -20,6 +20,11 @@ class OrdersItemsRepository implements IOrderItemsRepository {
     public async save(orderItem: OrderItem): Promise<OrderItem> {
         return this.ormRepository.save(orderItem);
     }
+
+    public async findByOrderId(id_order: string): Promise<OrderItem[]> {
+        const orderItems = this.ormRepository.find({ where: { id_order } });
+        return orderItems;
+    }
 }
 
 export default OrdersItemsRepository;

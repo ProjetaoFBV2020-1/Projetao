@@ -11,6 +11,12 @@ import CustomersRepository from '@modules/customers/infra/typeorm/repositories/C
 import ICompaniesRepository from '@modules/companies/repositories/ICompaniesRepository';
 import CompaniesRepository from '@modules/companies/infra/typeorm/repositories/CompaniesRepository';
 
+import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
+import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
+
+import IOrderItemsRepository from '@modules/orders/repositories/IOrderItemsRepository';
+import OrderItemsRespository from '@modules/orders/infra/typeorm/repositories/OrderItemsRepository';
+
 // o primeiro parâmetro é o id, geralmente utiliza-se o nome do repositório/classe
 // o segundo é o que ele vai retornar
 // a tipagem é opcional, mas coloca-se a interface do segundo parâmetro para
@@ -28,4 +34,14 @@ container.registerSingleton<ICustomersRepository>(
 container.registerSingleton<ICompaniesRepository>(
     'CompaniesRepository',
     CompaniesRepository,
+);
+
+container.registerSingleton<IOrdersRepository>(
+    'OrdersRepository',
+    OrdersRepository,
+);
+
+container.registerSingleton<IOrderItemsRepository>(
+    'OrderItemsRepository',
+    OrderItemsRespository,
 );

@@ -5,24 +5,24 @@ import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import Order from '../entities/Order';
 
 class OrdersRepository implements IOrdersRepository {
-    private ormRepository: Repository<Order>;
+    private orderRepository: Repository<Order>;
 
     constructor() {
-        this.ormRepository = getRepository(Order);
+        this.orderRepository = getRepository(Order);
     }
 
     public async create(data: ICreateOrderDTO): Promise<Order> {
-        const order = this.ormRepository.create(data);
-        await this.ormRepository.save(order);
+        const order = this.orderRepository.create(data);
+        await this.orderRepository.save(order);
         return order;
     }
 
     public async save(order: Order): Promise<Order> {
-        return this.ormRepository.save(order);
+        return this.orderRepository.save(order);
     }
 
     public async findById(id_order: string): Promise<Order | undefined> {
-        const order = this.ormRepository.findOne({ where: { id_order } });
+        const order = this.orderRepository.findOne({ where: { id_order } });
         return order;
     }
 }

@@ -43,11 +43,30 @@ class CreateOrderService {
                 item_id: item.item_id,
                 quantity: item.quantity,
                 item_value: item.item_value,
+                total_value: item.item_value * item.quantity,
                 description: item.description,
             });
         });
 
+        const orderItems = await this.orderItemsRepository.findByOrderId(
+            order.id_order,
+        );
+
+        let orderTotalValue = 0;
+
+        orderItems.forEach(orderItem => {
+            orderTotalValue += orderItem.total_value;
+        });
+
+        order.total_value = orderTotalValue;
+
+        delete order.created_at;
+        delete order.updated_at;
+
+        await this.ordersRepository.save(order);
+
         return order;
     }
 }
+
 export default CreateOrderService;

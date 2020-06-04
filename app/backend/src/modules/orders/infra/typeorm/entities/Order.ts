@@ -22,6 +22,12 @@ class Order {
     @Column()
     status: string;
 
+    @Column()
+    description: string;
+
+    @Column()
+    total_value: number;
+
     @CreateDateColumn()
     created_at: Date;
 

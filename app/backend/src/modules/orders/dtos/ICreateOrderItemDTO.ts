@@ -3,5 +3,6 @@ export default interface ICreateOrderItemDTO {
     item_id: string;
     quantity: number;
     item_value: number;
+    total_value: number;
     description: string;
 }
