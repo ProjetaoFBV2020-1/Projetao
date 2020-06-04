@@ -21,7 +21,7 @@ routes.use('/companies', companiesRouter);
 routes.use('/customers', customersRouter);
 
 routes.use('/orders', ordersCustomerRouter);
-routes.use('/orders', ordersCompanyRouter);
+// routes.use('/orders', ordersCompanyRouter);
 
 routes.use('/items', itemsRouter);
 
