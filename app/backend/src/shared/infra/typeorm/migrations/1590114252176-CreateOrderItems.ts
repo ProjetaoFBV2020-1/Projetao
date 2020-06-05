@@ -21,15 +21,11 @@ export default class CreateOrderItems1590114252176
                     },
                     {
                         name: 'item_value',
-                        type: 'decimal',
-                        precision: 10,
-                        scale: 2,
+                        type: 'double precision',
                     },
                     {
                         name: 'total_value',
-                        type: 'decimal',
-                        precision: 10,
-                        scale: 2,
+                        type: 'double precision',
                     },
                     {
                         name: 'description',

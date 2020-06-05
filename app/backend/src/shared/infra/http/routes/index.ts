@@ -6,7 +6,7 @@ import companiesRouter from '@modules/companies/infra/http/routes/companies.rout
 
 // Rotas para pedidos
 import ordersCustomerRouter from '@modules/orders/infra/http/routes/ordersCustomer.routes';
-import ordersCompanyRouter from '@modules/orders/infra/http/routes/ordersCompany.routes';
+// import ordersCompanyRouter from '@modules/orders/infra/http/routes/ordersCompany.routes';
 
 // Rota de items
 import itemsRouter from '@modules/items/infra/http/routes/items.routes';

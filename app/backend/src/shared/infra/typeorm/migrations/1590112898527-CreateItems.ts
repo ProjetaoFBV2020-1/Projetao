@@ -23,7 +23,7 @@ export default class CreateItems1590112898527 implements MigrationInterface {
                     },
                     {
                         name: 'price',
-                        type: 'decimal',
+                        type: 'double precision',
                     },
                     {
                         name: 'description',

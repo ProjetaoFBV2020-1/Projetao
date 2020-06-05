@@ -30,6 +30,11 @@ export default class CreateOrder1590113490640 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'total_value',
+                        type: 'double precision',
+                        isNullable: true,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()',

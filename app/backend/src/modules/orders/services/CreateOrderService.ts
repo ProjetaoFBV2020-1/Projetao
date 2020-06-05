@@ -14,6 +14,8 @@ interface IRequest {
     items: OrderItems[];
 }
 
+let orderTotalValue = 0;
+
 @injectable()
 class CreateOrderService {
     constructor(
@@ -38,7 +40,7 @@ class CreateOrderService {
         });
 
         items.forEach(async item => {
-            await this.orderItemsRepository.create({
+            this.orderItemsRepository.create({
                 order_id: order.id_order,
                 item_id: item.item_id,
                 quantity: item.quantity,
@@ -48,20 +50,16 @@ class CreateOrderService {
             });
         });
 
+        // Erro aqui, tenta buscar o order_id mas ainda não foi cadastrado na order_items
         const orderItems = await this.orderItemsRepository.findByOrderId(
             order.id_order,
         );
-
-        let orderTotalValue = 0;
 
         orderItems.forEach(orderItem => {
             orderTotalValue += orderItem.total_value;
         });
 
         order.total_value = orderTotalValue;
-
-        delete order.created_at;
-        delete order.updated_at;
 
         await this.ordersRepository.save(order);
 
