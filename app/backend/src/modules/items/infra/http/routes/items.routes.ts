@@ -15,6 +15,8 @@ itemsRouter.use(ensureAuthenticated);
 
 itemsRouter.post('/', ensureAuthenticated, itemController.create);
 
+itemsRouter.get('/', ensureAuthenticated, itemController.index);
+
 itemsRouter.patch('/', ensureAuthenticated, itemController.setInactive);
 
 itemsRouter.patch(

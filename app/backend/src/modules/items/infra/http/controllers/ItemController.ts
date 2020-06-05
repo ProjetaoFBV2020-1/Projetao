@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateItemService from '@modules/items/services/CreateItemService';
 import InactivateItemService from '@modules/items/services/InactivateItemService';
+import ListItemsCompanyService from '@modules/items/services/ListItemsCompanyService';
 
 export default class ItemController {
     public async create(
@@ -33,6 +34,23 @@ export default class ItemController {
 
         const inactve = await inactivateItemService.execute({
             id_item,
+        });
+
+        return response.json(inactve);
+    }
+
+    public async index(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { company_id } = request.body;
+
+        const listItemsCompanyService = container.resolve(
+            ListItemsCompanyService,
+        );
+
+        const inactve = await listItemsCompanyService.execute({
+            company_id,
         });
 
         return response.json(inactve);

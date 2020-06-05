@@ -8,7 +8,7 @@ const companyController = new CompanyController();
 
 companiesRouter.post('/', companyController.create);
 
-companiesRouter.get('/');
+companiesRouter.get('/', ensureAuthenticated, companyController.index);
 
 // Inativar empresa
 companiesRouter.patch('/', ensureAuthenticated, companyController.setInactive);

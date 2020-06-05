@@ -40,6 +40,10 @@ class CompaniesRepository implements ICompaniesRepository {
     public async save(company: Company): Promise<Company> {
         return this.ormRepository.save(company);
     }
+
+    public async all(): Promise<Company[]> {
+        return this.ormRepository.find();
+    }
 }
 
 export default CompaniesRepository;

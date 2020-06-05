@@ -6,4 +6,5 @@ export default interface IItemsRepository {
     create(data: ICreateUserDTO): Promise<Item>;
     save(item: Item): Promise<Item>;
     findById(id_tem: string): Promise<Item | undefined>;
+    findByCompanyId(company_id: string): Promise<Item[] | undefined>;
 }

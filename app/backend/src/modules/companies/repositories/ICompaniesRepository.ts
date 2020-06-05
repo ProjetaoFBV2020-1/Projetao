@@ -8,4 +8,5 @@ export default interface ICompaniesRepository {
     findByCpnj(cnpj: string): Promise<Company | undefined>;
     create(data: ICreateCompanyDTO): Promise<Company>;
     save(company: Company): Promise<Company>;
+    all(): Promise<Company[]>;
 }

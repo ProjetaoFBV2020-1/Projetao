@@ -51,4 +51,8 @@ export default class FakeCompanyRepository implements ICompaniesRepository {
         this.companiesRepository[findIndex] = company;
         return company;
     }
+
+    public async all(): Promise<Company[]> {
+        return this.companiesRepository;
+    }
 }

@@ -4,7 +4,10 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
 } from 'typeorm';
+import Company from '@modules/companies/infra/typeorm/entities/Company';
 
 @Entity('items')
 class Item {
@@ -13,6 +16,10 @@ class Item {
 
     @Column()
     company_id: string;
+
+    @ManyToOne(() => Company)
+    @JoinColumn({ name: 'company_id' })
+    company: Company;
 
     @Column()
     name: string;
