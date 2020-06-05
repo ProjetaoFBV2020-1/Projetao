@@ -32,6 +32,9 @@ class Company {
     @Column()
     password: string;
 
+    @Column()
+    inactive: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

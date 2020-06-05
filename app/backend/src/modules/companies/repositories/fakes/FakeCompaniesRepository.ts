@@ -14,6 +14,13 @@ export default class FakeCompanyRepository implements ICompaniesRepository {
         return company;
     }
 
+    public async findById(id_company: string): Promise<Company | undefined> {
+        const findCompany = this.companiesRepository.find(
+            company => company.id_company === id_company,
+        );
+        return findCompany;
+    }
+
     public async findByCpnj(cnpj: string): Promise<Company | undefined> {
         const findCompany = this.companiesRepository.find(
             company => company.cnpj === cnpj,

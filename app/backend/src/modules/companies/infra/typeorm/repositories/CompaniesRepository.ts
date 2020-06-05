@@ -17,6 +17,11 @@ class CompaniesRepository implements ICompaniesRepository {
         return company;
     }
 
+    public async findById(id_company: string): Promise<Company | undefined> {
+        const company = this.ormRepository.findOne({ where: { id_company } });
+        return company;
+    }
+
     public async findByCpnj(cnpj: string): Promise<Company | undefined> {
         const company = this.ormRepository.findOne({ where: { cnpj } });
         return company;

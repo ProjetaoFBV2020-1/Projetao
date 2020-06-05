@@ -13,7 +13,9 @@ const itemImageController = new ItemImageController();
 
 itemsRouter.use(ensureAuthenticated);
 
-itemsRouter.post('/', itemController.create);
+itemsRouter.post('/', ensureAuthenticated, itemController.create);
+
+itemsRouter.patch('/', ensureAuthenticated, itemController.setInactive);
 
 itemsRouter.patch(
     '/image',

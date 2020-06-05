@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateCompanyService from '../../../services/CreateCompanyService';
+import CreateCompanyService from '@modules/companies/services/CreateCompanyService';
+import InactivateCompanyService from '@modules/companies/services/InactivateCompanyService';
 
 export default class CompanyController {
     public async create(
@@ -29,5 +30,22 @@ export default class CompanyController {
         delete company.password;
 
         return response.json(company);
+    }
+
+    public async setInactive(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id_company } = request.body;
+
+        const inactivateCompanyService = container.resolve(
+            InactivateCompanyService,
+        );
+
+        const inactve = await inactivateCompanyService.execute({
+            id_company,
+        });
+
+        return response.json(inactve);
     }
 }

@@ -35,6 +35,11 @@ export default class CreateItems1590112898527 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: 'inactive',
+                        type: 'boolean',
+                        default: false,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()',

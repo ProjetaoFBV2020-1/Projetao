@@ -45,7 +45,7 @@ export default class CreateCustomer1590110438834 implements MigrationInterface {
                         default: 'now()',
                     },
                     {
-                        name: 'del_ind',
+                        name: 'inactive',
                         type: 'boolean',
                         default: false,
                     },

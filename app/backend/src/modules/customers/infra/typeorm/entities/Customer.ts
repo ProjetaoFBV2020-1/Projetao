@@ -29,6 +29,9 @@ class Customer {
     @Column()
     phone: string;
 
+    @Column()
+    inactive: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

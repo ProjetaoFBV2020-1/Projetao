@@ -2,7 +2,8 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { parseISO } from 'date-fns';
 
-import CreateCustomerService from '../../../services/CreateCustomerService';
+import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
+import InactivateCustomerService from '@modules/customers/services/InactivateCustomerService';
 
 export default class CustomerController {
     public async create(
@@ -26,5 +27,22 @@ export default class CustomerController {
         delete customer.password;
 
         return response.json(customer);
+    }
+
+    public async setInactive(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id_customer } = request.body;
+
+        const inactivateCustomerService = container.resolve(
+            InactivateCustomerService,
+        );
+
+        const inactve = await inactivateCustomerService.execute({
+            id_customer,
+        });
+
+        return response.json(inactve);
     }
 }

@@ -26,6 +26,9 @@ class Item {
     @Column()
     image: string;
 
+    @Column()
+    inactive: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

@@ -47,7 +47,7 @@ export default class CreateCompanies1590112008250
                         default: 'now()',
                     },
                     {
-                        name: 'del_ind',
+                        name: 'inactive',
                         type: 'boolean',
                         default: false,
                     },
