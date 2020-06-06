@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import AuthenticateCompanyService from '../../../services/AuthenticateCompanyService';
+import AuthenticateCompanyService from '@modules/companies/services/AuthenticateCompanyService';
 
 export default class SessionsCompanyController {
     public async create(

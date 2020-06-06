@@ -10,11 +10,13 @@ interface IRequest {
 class InactivateCustomerService {
     constructor(
         @inject('CustomersRepository')
-        private customerRepository: ICustomersRepository,
+        private customersRepository: ICustomersRepository,
     ) {}
 
     public async execute({ id_customer }: IRequest): Promise<boolean> {
-        const customer = await this.customerRepository.findById(id_customer);
+        const customer = await this.customersRepository.findOneById(
+            id_customer,
+        );
 
         if (!customer) {
             throw new AppError('Customer does not exist', 400);
@@ -25,7 +27,7 @@ class InactivateCustomerService {
         }
 
         customer.inactive = true;
-        this.customerRepository.save(customer);
+        this.customersRepository.save(customer);
         return true;
     }
 }

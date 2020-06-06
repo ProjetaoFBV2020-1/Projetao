@@ -3,7 +3,8 @@ import { container } from 'tsyringe';
 import { parseISO } from 'date-fns';
 
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import InactivateCustomerService from '@modules/customers/services/InactivateCustomerService';
+import ListCustomersService from '@modules/customers/services/ListCustomersService';
+import UpdateCustomersService from '@modules/customers/services/UpdateCustomersService';
 
 export default class CustomerController {
     public async create(
@@ -29,20 +30,39 @@ export default class CustomerController {
         return response.json(customer);
     }
 
-    public async setInactive(
+    public async index(
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { id_customer } = request.body;
+        const listCustomersService = container.resolve(ListCustomersService);
 
-        const inactivateCustomerService = container.resolve(
-            InactivateCustomerService,
-        );
+        const customers = await listCustomersService.execute();
 
-        const inactve = await inactivateCustomerService.execute({
-            id_customer,
+        customers.forEach(customer => {
+            delete customer.password;
         });
 
-        return response.json(inactve);
+        return response.json(customers);
+    }
+
+    public async update(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id_customer, name, email, date_birth, phone } = request.body;
+
+        const updateCustomersService = container.resolve(
+            UpdateCustomersService,
+        );
+
+        const customer = await updateCustomersService.execute({
+            id_customer,
+            name,
+            email,
+            date_birth,
+            phone,
+        });
+
+        return response.json(customer);
     }
 }

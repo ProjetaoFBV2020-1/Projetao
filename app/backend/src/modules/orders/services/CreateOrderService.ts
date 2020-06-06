@@ -40,14 +40,9 @@ class CreateOrderService {
         });
 
         items.forEach(async item => {
-            this.orderItemsRepository.create({
-                order_id: order.id_order,
-                item_id: item.item_id,
-                quantity: item.quantity,
-                item_value: item.item_value,
-                total_value: item.item_value * item.quantity,
-                description: item.description,
-            });
+            item.order_id = order.id_order;
+            item.total_value = item.item_value * item.quantity;
+            await this.orderItemsRepository.create(item);
         });
 
         // Erro aqui, tenta buscar o order_id mas ainda não foi cadastrado na order_items
