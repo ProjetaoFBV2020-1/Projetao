@@ -3,16 +3,16 @@ import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import getValidationErrors from '../../utils/getValidationErrors';
+import getValidationErrors from '../../../utils/getValidationErrors';
 import { Link, useHistory } from 'react-router-dom';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import { useToast } from '../../hooks/toast';
+import { useToast } from '../../../hooks/toast';
 
-import logoImg from '../../assets/logo_dark_mode.svg';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import logoImg from '../../../assets/logo_dark_mode.svg';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import { Container, Content, AnimationContainer, Background } from './styles';
 
 interface SignUpFormData {

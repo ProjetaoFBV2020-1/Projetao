@@ -5,14 +5,14 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../hooks/auth';
-import { useToast } from '../../hooks/toast';
-import getValidationErrors from '../../utils/getValidationErrors';
+import { useAuth } from '../../../hooks/auth';
+import { useToast } from '../../../hooks/toast';
+import getValidationErrors from '../../../utils/getValidationErrors';
 
-import logoImg from '../../assets/logo_dark_mode.svg';
+import logoImg from '../../../assets/logo_dark_mode.svg';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import { Container, Content, AnimationContainer, Background } from './styles';
 
 interface SignInFormData {
@@ -77,7 +77,7 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
             <Button type="submit">Entrar</Button>
-            <a href="forgot">Esqueci minha senha</a>
+            <Link to="/forgot-password">Esqueci minha senha</Link>
           </Form>
           <Link to="/signup">
             <FiLogIn />

@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import SignInBackgroundImg from '../../assets/sign-in-background-img.jpg';
+import SignInBackgroundImg from '../../../assets/sign-in-background-img.jpg';
 import { animated } from 'react-spring/renderprops-universal';
 
 export const Container = styled.div`
@@ -34,8 +34,13 @@ export const AnimationContainer = styled.div`
   justify-content: center;
 
   animation: ${appearFromLeft} 1s;
+
+  > img {
+    max-width: 80%;
+  }
+
   form {
-    margin: 80px 0;
+    margin: 40px 0;
     width: 340px;
     text-align: center;
 
