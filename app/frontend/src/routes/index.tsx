@@ -7,6 +7,7 @@ import SignIn from '../pages/customer/SignIn';
 import SignUp from '../pages/customer/SignUp';
 import Dashboard from '../pages/customer/Dashboard';
 import ForgotPassword from '../pages/customer/ForgotPassword';
+import Delivery from '../pages/customer/Delivery';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -14,7 +15,8 @@ const Routes: React.FC = () => (
 
     <Route path="/signup" component={SignUp} />
     <Route path="/forgot-password" component={ForgotPassword} />
-    <Route path="/dashboard" exact component={Dashboard} isPrivate />
+    <Route path="/delivery" component={Delivery} isPrivate />
+    <Route path="/dashboard" component={Dashboard} isPrivate />
   </Switch>
 );
 

@@ -42,7 +42,7 @@ class CompaniesRepository implements ICompaniesRepository {
     }
 
     public async all(): Promise<Company[]> {
-        return this.ormRepository.find();
+        return this.ormRepository.find({ where: { inactive: false } });
     }
 }
 

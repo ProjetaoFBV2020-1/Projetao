@@ -28,6 +28,7 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@OffTalk:token');
     const customer = localStorage.getItem('@OffTalk:user');
+    api.defaults.headers.authorization = `Bearer ${token}`;
     if (token && customer) {
       return { token, customer: JSON.parse(customer) };
     }
@@ -43,6 +44,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token, customer } = response.data;
     localStorage.setItem('@OffTalk:token', token);
     localStorage.setItem('@OffTalk:user', JSON.stringify(customer));
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, customer });
   }, []);

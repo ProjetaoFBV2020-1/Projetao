@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const Content = styled.div`
   max-width: 1120px;
@@ -21,18 +24,16 @@ export const Content = styled.div`
     }
   }
 `;
-export const Schedule = styled.div`
-  flex: 1;
-`;
 
-export const Grid = styled.div`
-  margin-top: 64px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
-  max-width: 1120px;
-  div {
-    display: flex;
-    flex-direction: column;
+export const Cart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  border-color: #0015;
+  border-style: solid;
+  header {
+    margin: 0 30px;
+    padding: 20px 0;
   }
 `;

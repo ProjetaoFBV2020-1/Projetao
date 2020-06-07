@@ -63,6 +63,7 @@ export default class CompanyController {
             delete company.email;
             delete company.created_at;
             delete company.updated_at;
+            delete company.inactive;
         });
         return response.json(companies);
     }
