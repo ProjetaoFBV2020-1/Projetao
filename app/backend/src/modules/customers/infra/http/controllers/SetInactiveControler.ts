@@ -8,7 +8,7 @@ class SetInactiveControler {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { id_customer } = request.body;
+        const id_customer = request.user.id;
 
         const inactivateCustomerService = container.resolve(
             InactivateCustomerService,

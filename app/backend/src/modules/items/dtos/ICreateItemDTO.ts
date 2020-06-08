@@ -3,5 +3,4 @@ export default interface ICreateItemDTO {
     name: string;
     price: number;
     description: string;
-    image: string;
 }

@@ -5,4 +5,6 @@ export default interface IOrdersRepository {
     create(data: ICreateOrderDTO): Promise<Order>;
     save(order: Order): Promise<Order>;
     findById(id_order: string): Promise<Order | undefined>;
+    findByIdCompany(company_id: string): Promise<Order[] | undefined>;
+    findByIdCustomer(customer_id: string): Promise<Order[] | undefined>;
 }

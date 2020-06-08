@@ -6,7 +6,7 @@ import companiesRouter from '@modules/companies/infra/http/routes/companies.rout
 
 // Rotas para pedidos
 import ordersCustomerRouter from '@modules/orders/infra/http/routes/ordersCustomer.routes';
-// import ordersCompanyRouter from '@modules/orders/infra/http/routes/ordersCompany.routes';
+import ordersCompanyRouter from '@modules/orders/infra/http/routes/ordersCompany.routes';
 
 // Rota de items
 import itemsRouter from '@modules/items/infra/http/routes/items.routes';
@@ -15,19 +15,28 @@ import itemsRouter from '@modules/items/infra/http/routes/items.routes';
 import sessionsCompanyRouter from '@modules/companies/infra/http/routes/sessionsCompany.routes';
 import sessionsCustomerRouter from '@modules/customers/infra/http/routes/sessionsCustomer.routes';
 
+import passwordCompanyRouter from '@modules/companies/infra/http/routes/passwordCompany.routes';
+import passwordCustomerRouter from '@modules/customers/infra/http/routes/passwordCustomer.routes';
+
+import profileCompanyRouter from '@modules/companies/infra/http/routes/profileCompany.routes';
+import profileCustomerRouter from '@modules/customers/infra/http/routes/profileCustomer.routes';
+
 const routes = Router();
 
 routes.use('/companies', companiesRouter);
 routes.use('/customers', customersRouter);
 
-routes.use('/orders', ordersCustomerRouter);
-// routes.use('/orders', ordersCompanyRouter);
+routes.use('/ordersCustomer', ordersCustomerRouter);
+routes.use('/ordersCompany', ordersCompanyRouter);
 
 routes.use('/items', itemsRouter);
 
 routes.use('/sessionsCompany', sessionsCompanyRouter);
-routes.use('/sessionsCustomer', sessionsCustomerRouter);
+routes.use('/passwordCompany', passwordCompanyRouter);
+routes.use('/profileCompany', profileCompanyRouter);
 
-// define a rota e envia para o arquivo de escifico de rotas
+routes.use('/sessionsCustomer', sessionsCustomerRouter);
+routes.use('/passwordCustomer', passwordCustomerRouter);
+routes.use('/profileCustomer', profileCustomerRouter);
 
 export default routes;

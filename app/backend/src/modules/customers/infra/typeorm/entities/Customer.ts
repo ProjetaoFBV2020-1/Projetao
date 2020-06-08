@@ -24,6 +24,9 @@ class Customer {
     date_birth: Date;
 
     @Column()
+    avatar: string;
+
+    @Column()
     password: string;
 
     @Column()

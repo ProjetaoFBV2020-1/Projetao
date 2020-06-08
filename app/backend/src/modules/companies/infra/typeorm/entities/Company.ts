@@ -30,6 +30,9 @@ class Company {
     email: string;
 
     @Column()
+    avatar: string;
+
+    @Column()
     password: string;
 
     @Column()

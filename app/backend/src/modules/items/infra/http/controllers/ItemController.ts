@@ -2,15 +2,16 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateItemService from '@modules/items/services/CreateItemService';
-import InactivateItemService from '@modules/items/services/InactivateItemService';
 import ListItemsCompanyService from '@modules/items/services/ListItemsCompanyService';
+import DeleteItemService from '@modules/items/services/DeleteItemService';
 
 export default class ItemController {
     public async create(
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { company_id, name, price, description, image } = request.body;
+        const { name, price, description } = request.body;
+        const company_id = request.user.id;
 
         const createItem = container.resolve(CreateItemService);
 
@@ -19,38 +20,36 @@ export default class ItemController {
             name,
             price,
             description,
-            image,
         });
         return response.json(item);
     }
 
-    public async setInactive(
+    public async delete(
         request: Request,
         response: Response,
     ): Promise<Response> {
         const { id_item } = request.body;
+        const id_company = request.user.id;
 
-        const inactivateItemService = container.resolve(InactivateItemService);
+        const deleteItemService = container.resolve(DeleteItemService);
 
-        const inactve = await inactivateItemService.execute({
-            id_item,
-        });
+        deleteItemService.execute({ id_company, id_item });
 
-        return response.json(inactve);
+        return response.status(204).json();
     }
 
     public async index(
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { company_id } = request.query;
+        const company_id = request.user.id;
 
         const listItemsCompanyService = container.resolve(
             ListItemsCompanyService,
         );
 
         const inactve = await listItemsCompanyService.execute({
-            company_id: String(company_id),
+            company_id,
         });
 
         return response.json(inactve);

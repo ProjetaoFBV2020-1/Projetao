@@ -24,9 +24,7 @@ class CustomersRepository implements ICustomersRepository {
         return customers;
     }
 
-    public async findOneById(
-        id_customer: string,
-    ): Promise<Customer | undefined> {
+    public async findById(id_customer: string): Promise<Customer | undefined> {
         const customer = this.ormRepository.findOne({ where: { id_customer } });
         return customer;
     }

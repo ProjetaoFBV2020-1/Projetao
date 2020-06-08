@@ -38,7 +38,7 @@ export default class CompanyController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { id_company } = request.body;
+        const id_company = request.user.id;
 
         const inactivateCompanyService = container.resolve(
             InactivateCompanyService,

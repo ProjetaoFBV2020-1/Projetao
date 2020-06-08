@@ -17,10 +17,12 @@ import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersR
 import IOrderItemsRepository from '@modules/orders/repositories/IOrderItemsRepository';
 import OrderItemsRespository from '@modules/orders/infra/typeorm/repositories/OrderItemsRepository';
 
-// o primeiro parâmetro é o id, geralmente utiliza-se o nome do repositório/classe
-// o segundo é o que ele vai retornar
-// a tipagem é opcional, mas coloca-se a interface do segundo parâmetro para
-// obriga-lo a ter o formato desejado, senão não funciona
+import ICompanyTokensRepository from '@modules/companies/repositories/ICompanyTokensRepository';
+import CompanyTokensRepository from '@modules/companies/infra/typeorm/repositories/CompanyTokensRepository';
+
+import CustomerTokensRepository from '@modules/customers/infra/typeorm/repositories/CustomerTokensRepository';
+import ICustomerTokensRepository from '@modules/customers/repositories/ICustomerTokensRepository';
+
 container.registerSingleton<IItemsRepository>(
     'ItemsRepository',
     ItemsRepository,
@@ -44,4 +46,14 @@ container.registerSingleton<IOrdersRepository>(
 container.registerSingleton<IOrderItemsRepository>(
     'OrderItemsRepository',
     OrderItemsRespository,
+);
+
+container.registerSingleton<ICompanyTokensRepository>(
+    'CompanyTokensRepository',
+    CompanyTokensRepository,
+);
+
+container.registerSingleton<ICustomerTokensRepository>(
+    'CustomerTokensRepository',
+    CustomerTokensRepository,
 );

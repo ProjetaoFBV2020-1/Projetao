@@ -2,7 +2,8 @@ import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 
-import ensureAuthenticated from '@shared/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+
 import ItemController from '../controllers/ItemController';
 import ItemImageController from '../controllers/ItemImageController';
 
@@ -12,18 +13,13 @@ const itemController = new ItemController();
 const itemImageController = new ItemImageController();
 
 itemsRouter.use(ensureAuthenticated);
+// toda a rota está sendo verificada a autenticação
+itemsRouter.post('/', itemController.create);
 
-itemsRouter.post('/', ensureAuthenticated, itemController.create);
+itemsRouter.get('/', itemController.index);
 
-itemsRouter.get('/', ensureAuthenticated, itemController.index);
+itemsRouter.delete('/', itemController.delete);
 
-itemsRouter.patch('/', ensureAuthenticated, itemController.setInactive);
-
-itemsRouter.patch(
-    '/image',
-    ensureAuthenticated,
-    upload.single('image'),
-    itemImageController.save,
-);
+itemsRouter.patch('/image', upload.single('image'), itemImageController.save);
 
 export default itemsRouter;

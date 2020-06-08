@@ -7,4 +7,5 @@ export default interface IItemsRepository {
     save(item: Item): Promise<Item>;
     findById(id_tem: string): Promise<Item | undefined>;
     findByCompanyId(company_id: string): Promise<Item[] | undefined>;
+    delete(item: Item): Promise<void>;
 }

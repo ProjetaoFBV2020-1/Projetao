@@ -25,6 +25,20 @@ class OrdersRepository implements IOrdersRepository {
         const order = this.orderRepository.findOne({ where: { id_order } });
         return order;
     }
+
+    public async findByIdCompany(
+        company_id: string,
+    ): Promise<Order[] | undefined> {
+        const orders = this.orderRepository.find({ where: { company_id } });
+        return orders;
+    }
+
+    public async findByIdCustomer(
+        customer_id: string,
+    ): Promise<Order[] | undefined> {
+        const orders = this.orderRepository.find({ where: { customer_id } });
+        return orders;
+    }
 }
 
 export default OrdersRepository;

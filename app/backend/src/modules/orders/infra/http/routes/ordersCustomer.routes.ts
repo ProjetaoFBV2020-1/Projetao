@@ -1,19 +1,18 @@
 import { Router } from 'express';
 
-import ensureAuthenticated from '@shared/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+
 // import Order_item from '../models/Order_item';
 
-import OrderController from '../controllers/OrderController';
+import OrderCustomerController from '../controllers/OrderCustomerController';
 
 const ordersCustomerRouter = Router();
-const orderController = new OrderController();
+const orderCustomerController = new OrderCustomerController();
 
 ordersCustomerRouter.use(ensureAuthenticated);
 
-ordersCustomerRouter.get('/', async (request, response) => {
-    return response.json({ ok: true });
-});
+ordersCustomerRouter.get('/', orderCustomerController.index);
 
-ordersCustomerRouter.post('/', orderController.create);
+ordersCustomerRouter.post('/', orderCustomerController.create);
 
 export default ordersCustomerRouter;

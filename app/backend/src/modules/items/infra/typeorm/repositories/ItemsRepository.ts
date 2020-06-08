@@ -41,5 +41,9 @@ class ItemsRepository implements IItemsRepository {
     ): Promise<Item[] | undefined> {
         return this.ormRepository.find({ where: { company_id } });
     }
+
+    public async delete(item: Item): Promise<void> {
+        this.ormRepository.remove(item);
+    }
 }
 export default ItemsRepository;

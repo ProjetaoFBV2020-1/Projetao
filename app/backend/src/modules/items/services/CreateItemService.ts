@@ -9,7 +9,6 @@ interface IRequest {
     name: string;
     price: number;
     description: string;
-    image: string;
 }
 
 @injectable()
@@ -24,7 +23,6 @@ class CreateItemService {
         name,
         price,
         description,
-        image,
     }: IRequest): Promise<Item> {
         const sameName = await this.itemsRepository.findByName(
             name,
@@ -40,7 +38,6 @@ class CreateItemService {
             name,
             price,
             description,
-            image,
         });
 
         return item;
