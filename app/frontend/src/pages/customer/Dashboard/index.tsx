@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 import { Container, Content, Schedule, Grid } from './styles';
 import Header from '../../../components/Header';
-
+import { Link } from 'react-router-dom';
 import api from '../../../services/api';
 
-interface Companie {
+interface company {
   cnpj: string;
   company_name: string;
   id_company: string;
@@ -13,16 +13,15 @@ interface Companie {
 }
 
 const Dashboard: React.FC = () => {
-  const [companiesList, setCompaniesList] = useState<Companie[]>(
-    [] as Companie[],
-  );
+  const [companysList, setcompanysList] = useState<company[]>([] as company[]);
 
   useEffect(() => {
-    api.get<Companie[]>('/companies').then((response) => {
-      setCompaniesList(response.data);
+    api.get<company[]>('/companies').then((response) => {
+      setcompanysList(response.data);
     });
   }, []);
 
+  console.log(companysList);
   return (
     <Container>
       <Header />
@@ -36,14 +35,16 @@ const Dashboard: React.FC = () => {
           </p>
         </Schedule>
         <Grid>
-          {companiesList.map((companie) => (
-            <div>
-              <img
-                src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
-                alt={companie.id_company}
-              />
-              <strong>{companie.company_name}</strong>
-            </div>
+          {companysList.map((company) => (
+            <Link to={`/delivery/${company.id_company}`}>
+              <div key={company.id_company}>
+                <img
+                  src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
+                  alt={company.id_company}
+                />
+                <strong>{company.company_name}</strong>
+              </div>
+            </Link>
           ))}
         </Grid>
       </Content>

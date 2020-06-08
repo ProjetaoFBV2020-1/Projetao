@@ -1,39 +1,54 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin-top: 64px;
+  margin-left: 30%;
   display: flex;
   flex-direction: row;
-`;
-
-export const Content = styled.div`
-  max-width: 1120px;
-  margin: 64px auto;
-  display: flex;
-  flex-direction: column;
-
+  justify-content: space-between;
   h1 {
     font-size: 36px;
   }
-  p {
-    margin-top: 8px;
-    color: #e30000;
-    span + span {
-      margin-left: 8px;
-      padding-left: 8px;
-      border-left: 1px solid #e30000;
-    }
-  }
 `;
 
-export const Cart = styled.div`
+export const Content = styled.div`
   display: flex;
+`;
+export const Cart = styled.div`
   flex-direction: column;
+  width: 300px;
   align-items: center;
-  width: 360px;
+  max-width: 1120px;
   border-color: #0015;
   border-style: solid;
   header {
     margin: 0 30px;
     padding: 20px 0;
+  }
+`;
+export const ItemBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  div {
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      border-radius: 50%;
+      width: 64px;
+    }
+  }
+`;
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+
+  button {
+    color: #fff;
+    background: 0;
+    border: 0;
   }
 `;
