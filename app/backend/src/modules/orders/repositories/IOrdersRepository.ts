@@ -7,4 +7,5 @@ export default interface IOrdersRepository {
     findById(id_order: string): Promise<Order | undefined>;
     findByIdCompany(company_id: string): Promise<Order[] | undefined>;
     findByIdCustomer(customer_id: string): Promise<Order[] | undefined>;
+    deleteOrder(order: Order): Promise<void>;
 }

@@ -42,14 +42,14 @@ export default class ItemController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const company_id = request.user.id;
+        const { company_id } = request.query;
 
         const listItemsCompanyService = container.resolve(
             ListItemsCompanyService,
         );
 
         const inactve = await listItemsCompanyService.execute({
-            company_id,
+            company_id: String(company_id),
         });
 
         return response.json(inactve);

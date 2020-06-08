@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 @injectable()
-class GetOrdersCustomer {
+class ListOrdersCustomerService {
     constructor(
         @inject('OrdersRepository')
         private ordersRepository: IOrdersRepository,
@@ -27,4 +27,4 @@ class GetOrdersCustomer {
     }
 }
 
-export default GetOrdersCustomer;
+export default ListOrdersCustomerService;

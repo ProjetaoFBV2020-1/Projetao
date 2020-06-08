@@ -4,12 +4,12 @@ import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthentica
 
 import ProfileController from '../controllers/ProfileCompanyController';
 
-const profileRouter = Router();
+const profileCompanyRouter = Router();
 const profileController = new ProfileController();
 
-profileRouter.use(ensureAuthenticated);
+profileCompanyRouter.use(ensureAuthenticated);
 
-profileRouter.put('/', profileController.update);
-profileRouter.get('/', profileController.show);
+profileCompanyRouter.put('/', profileController.update);
+profileCompanyRouter.get('/', profileController.show);
 
-export default profileRouter;
+export default profileCompanyRouter;

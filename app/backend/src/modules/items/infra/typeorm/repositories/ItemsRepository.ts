@@ -36,6 +36,11 @@ class ItemsRepository implements IItemsRepository {
         return item;
     }
 
+    public async findByIds(id_items: string[]): Promise<Item[] | undefined> {
+        const items = await this.ormRepository.find({ where: { id_items } });
+        return items;
+    }
+
     public async findByCompanyId(
         company_id: string,
     ): Promise<Item[] | undefined> {

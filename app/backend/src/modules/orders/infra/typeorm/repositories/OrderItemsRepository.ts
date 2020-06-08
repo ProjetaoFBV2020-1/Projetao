@@ -27,6 +27,20 @@ class OrdersItemsRepository implements IOrderItemsRepository {
         });
         return orderItems;
     }
+
+    public async createArray(
+        data: ICreateOrderItemDTO[],
+    ): Promise<OrderItem[]> {
+        const orderItems = this.ormRepository.create(data);
+        return this.ormRepository.save(orderItems);
+    }
+
+    public async deleteByOrderId(order_id: string): Promise<void> {
+        const orderItems = await this.ormRepository.find({
+            where: { order_id },
+        });
+        await this.ormRepository.remove(orderItems);
+    }
 }
 
 export default OrdersItemsRepository;
