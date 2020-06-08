@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { Container, Content, Cart, Grid, ItemBox } from './styles';
+import { Container, Content, Cart, Grid, ItemBox, CartItem } from './styles';
 import Header from '../../../components/Header';
 import api from '../../../services/api';
 import { useParams, Link } from 'react-router-dom';
@@ -15,28 +15,50 @@ interface Item {
 }
 interface Params {
   id: string;
+  companyName: string;
+}
+interface CartItem {
+  item_id: string;
+  quantity: number;
+  description: string;
+  name: string;
+  price: number;
 }
 
 //http://localhost:3333/items?company_id=3c3a9f98-c25b-45e9-90e8-41da12ae81ef
 const Delivery: React.FC = () => {
   const [itemList, setItemList] = useState<Item[]>([] as Item[]);
-  const [params, setParams] = useState<Params>(useParams());
-  const [cart, setCart] = useState<string[]>([] as string[]);
-
+  const [cart, setCart] = useState<CartItem[]>([] as CartItem[]);
+  const { id, companyName } = useParams();
   useEffect(() => {
-    api.get<Item[]>(`/items?company_id=${params.id}`).then((response) => {
+    api.get<Item[]>(`/items?company_id=${id}`).then((response) => {
       setItemList(response.data);
     });
   }, []);
 
   const handleAddMeal = useCallback(
-    (id: string) => {
+    (item: Item) => {
       const newCart = cart.slice();
-      newCart.push(id);
-      setCart(newCart);
+      try {
+        const returnedValue = newCart.find(
+          (obj) => obj.item_id === item.id_item,
+        );
+        newCart[newCart.indexOf(returnedValue as CartItem)].quantity += 1;
+      } catch (error) {
+        newCart.push({
+          item_id: item.id_item,
+          quantity: 1,
+          description: 'string',
+          name: item.name,
+          price: item.price,
+        });
+      } finally {
+        setCart(newCart);
+      }
     },
     [cart],
   );
+
   return (
     <>
       <Header />
@@ -46,7 +68,7 @@ const Delivery: React.FC = () => {
             {itemList.map((item) => (
               <button
                 onClick={() => {
-                  handleAddMeal(item.id_item);
+                  handleAddMeal(item);
                 }}
               >
                 <ItemBox key={item.id_item}>
@@ -70,8 +92,19 @@ const Delivery: React.FC = () => {
         </Content>
         <Cart>
           <header>
-            <h1>teste</h1>
+            <h1>Seu pedido em</h1>
+            <strong>{companyName}</strong>
           </header>
+          {cart.map((item) => (
+            <CartItem>
+              <div>
+                <h1>
+                  {item.quantity}x {item.name}
+                </h1>
+                <h1> R$ {item.price}</h1>
+              </div>
+            </CartItem>
+          ))}
         </Cart>
       </Container>
     </>

@@ -18,7 +18,6 @@ import { Container, Content, AnimationContainer, Background } from './styles';
 interface SignInFormData {
   email: string;
   password: string;
-  userType: string;
 }
 
 const SignIn: React.FC = () => {
@@ -44,9 +43,9 @@ const SignIn: React.FC = () => {
         await signIn({
           email: data.email,
           password: data.password,
-          userType: "Customer",
+          userType: "Company",
         });
-        history.push('/dashboard');
+        history.push('/dashboardCompany');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);

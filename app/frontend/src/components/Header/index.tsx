@@ -4,6 +4,7 @@ import { HeaderDiv, HeaderContent, Profile } from './styles';
 import logoImg from '../../assets/logo_dark_mode.svg';
 import { useAuth } from '../../hooks/auth';
 import { FiPower } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();
