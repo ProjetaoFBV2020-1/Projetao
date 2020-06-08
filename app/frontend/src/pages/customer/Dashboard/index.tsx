@@ -21,7 +21,6 @@ const Dashboard: React.FC = () => {
     });
   }, []);
 
-  console.log(companysList);
   return (
     <Container>
       <Header />
@@ -36,13 +35,16 @@ const Dashboard: React.FC = () => {
         </Schedule>
         <Grid>
           {companysList.map((company) => (
-            <Link key={company.id_company} to={`/delivery/${company.id_company}`}>
-              <div >
+            <Link
+              key={company.id_company}
+              to={`/delivery/${company.company_name}/${company.id_company}`}
+            >
+              <div>
                 <img
                   src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
                   alt={company.id_company}
                 />
-                <strong>{company.company_name}</strong>
+                <strong>{company.trade_name}</strong>
               </div>
             </Link>
           ))}
