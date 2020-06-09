@@ -4,7 +4,7 @@ import { Container, Content, Cart, Grid, ItemBox, CartItem } from './styles';
 import Header from '../../../components/Header';
 import api from '../../../services/api';
 import { useParams, Link } from 'react-router-dom';
-
+import Button from '../../../components/Button';
 interface Item {
   id_item: string;
   company_id: string;
@@ -24,12 +24,19 @@ interface CartItem {
   name: string;
   price: number;
 }
+interface OrderItem {
+  item_id: string;
+  quantity: number;
+  description: string;
+}
 
 //http://localhost:3333/items?company_id=3c3a9f98-c25b-45e9-90e8-41da12ae81ef
 const Delivery: React.FC = () => {
   const [itemList, setItemList] = useState<Item[]>([] as Item[]);
   const [cart, setCart] = useState<CartItem[]>([] as CartItem[]);
   const { id, companyName } = useParams();
+  const [totalValue, setTotalValue] = useState<number>();
+
   useEffect(() => {
     api.get<Item[]>(`/items?company_id=${id}`).then((response) => {
       setItemList(response.data);
@@ -58,6 +65,34 @@ const Delivery: React.FC = () => {
     },
     [cart],
   );
+  const handleFinishOrder = useCallback(() => {
+    const copyOfCart = cart.slice();
+    const order = [] as OrderItem[];
+    copyOfCart.forEach((element) => {
+      order.push({
+        item_id: element.item_id,
+        quantity: element.quantity,
+        description: element.description,
+      });
+    });
+    api
+      .post('/items', {
+        company_id: id,
+        description: '',
+        items: order,
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    let newTotalValue = 0;
+    cart.forEach((element) => {
+      newTotalValue += element.price * element.quantity;
+    });
+    setTotalValue(newTotalValue);
+  }, [cart]);
 
   return (
     <>
@@ -105,6 +140,10 @@ const Delivery: React.FC = () => {
               </div>
             </CartItem>
           ))}
+          <div>
+            <h3>Valor total: R${totalValue}</h3>
+          </div>
+          <Button onClick={handleFinishOrder}>Finalizar pedido</Button>
         </Cart>
       </Container>
     </>
