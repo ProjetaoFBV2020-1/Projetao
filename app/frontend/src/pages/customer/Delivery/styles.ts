@@ -38,6 +38,17 @@ export const Cart = styled.div`
     margin: 0 30px;
     padding: 20px 0;
   }
+   
+  }
+  div{
+   
+    display:flex;
+    justify-content:center;
+    >h3 {
+    margin: 0 30px;
+    padding: 20px 0;
+  }
+  
 `;
 export const ItemBox = styled.div`
   display: flex;
@@ -76,6 +87,11 @@ export const CartItem = styled.div`
     }
 
     border-top: solid 1px;
+    margin: 0 30px;
+    padding: 12px 0 16px;
+  }
+  div {
+    border-top: #dcdcdc solid 1px;
     margin: 0 30px;
     padding: 12px 0 16px;
   }
