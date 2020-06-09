@@ -33,19 +33,19 @@ const SignUp: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
+          cnpj: Yup.string().required('CNPJ obrigatório'),
+          company_name: Yup.string().required('Razão Social obrigatória'),
+          trade_name: Yup.string().required('Nome Fantasia obrigatório'),
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          date_birth: Yup.string().required(),
-          phone: Yup.string().required(),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
         });
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/customers', data);
+        await api.post('/companies', data);
         addToast({
           type: 'success',
           title: 'Cadastro realizado!',
@@ -77,14 +77,10 @@ const SignUp: React.FC = () => {
           <img src={logoImg} alt="offtalk" />
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu Cadastro</h1>
-            <Input name="name" icon={FiUser} placeholder="Nome" />
+            <Input name="cnpj" icon={FiUser} placeholder="Cnpj" />
+            <Input name="company_name" icon={FiUser} placeholder="Razão Social" />
+            <Input name="trade_name" icon={FiUser} placeholder="Nome Fantasia" />
             <Input name="email" icon={FiMail} placeholder="E-mail" />
-            <Input
-              name="date_birth"
-              icon={FiMail}
-              placeholder="Data de nascimento"
-            />
-            <Input name="phone" icon={FiMail} placeholder="Telefone" />
             <Input
               name="password"
               icon={FiLock}
@@ -93,7 +89,7 @@ const SignUp: React.FC = () => {
             />
             <Button type="submit">Cadastrar</Button>
           </Form>
-          <Link to="/">
+          <Link to="/signin-company">
             <FiArrowLeft />
             Voltar para logon
           </Link>

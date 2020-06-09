@@ -43,7 +43,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(async ({ email, password, userType }) => {
 
-    if (userType == "Customer") {
+    if (userType === "Customer") {
       const response = await api.post('sessionsCustomer', {
         email,
         password,
@@ -59,7 +59,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
       setData({ token, customer, userType });
     }
-    else if (userType == "Company") {
+    else if (userType === "Company") {
       const response = await api.post('sessionsCompany', {
         email,
         password,

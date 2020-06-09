@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
           password: data.password,
           userType: "Company",
         });
-        history.push('/dashboardCompany');
+        history.push('/dashboard-company');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -69,6 +69,7 @@ const SignIn: React.FC = () => {
         <AnimationContainer>
           <img src={logoImg} alt="adecidir" />
           <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Empresas</h1>
             <h1>Faça seu logon</h1>
             <Input name="email" icon={FiMail} placeholder="E-mail" />
             <Input
@@ -79,9 +80,9 @@ const SignIn: React.FC = () => {
             />
             <Button type="submit">Entrar</Button>
             <Link to="/forgot-password">Esqueci minha senha</Link>
-
+            <Link to="/">Clientes Físicos</Link>
           </Form>
-          <Link to="/signup">
+          <Link to="/signup-company">
             <FiLogIn />
             Criar conta
           </Link>
