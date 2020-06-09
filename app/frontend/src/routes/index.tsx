@@ -5,6 +5,7 @@ import Route from './Route';
 import SignInCompany from '../pages/company/SignIn';
 import SignIn from '../pages/customer/SignIn';
 import SignUp from '../pages/customer/SignUp';
+import SignUpCompany from '../pages/company/SignUp';
 import Dashboard from '../pages/customer/Dashboard';
 import ForgotPassword from '../pages/customer/ForgotPassword';
 import Delivery from '../pages/customer/Delivery';
@@ -17,6 +18,7 @@ const Routes: React.FC = () => (
     <Route path="/signin-company" exact component={SignInCompany} />
     <Route path="/dashboard-company" component={DashBoardCompany} />
     <Route path="/signup" component={SignUp} />
+    <Route path="/signup-company" component={SignUpCompany} />
     <Route path="/forgot-password" component={ForgotPassword} />
     <Route path="/delivery/:companyName/:id" component={Delivery} isPrivate />
     <Route path="/dashboard" component={Dashboard} isPrivate />
