@@ -5,7 +5,6 @@ import { string } from 'yup';
 interface User {
   id: string;
   name: string;
-  
 }
 
 interface SignInCredentials {
@@ -33,7 +32,7 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@OffTalk:token');
     const customer = localStorage.getItem('@OffTalk:user');
-    const userType = localStorage.getItem('@Offtalk:userType')
+    const userType = localStorage.getItem('@Offtalk:userType');
     api.defaults.headers.authorization = `Bearer ${token}`;
     if (token && customer && userType) {
       return { token, customer: JSON.parse(customer), userType };
@@ -42,8 +41,7 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password, userType }) => {
-
-    if (userType == "Customer") {
+    if (userType === 'Customer') {
       const response = await api.post('sessionsCustomer', {
         email,
         password,
@@ -58,8 +56,7 @@ const AuthProvider: React.FC = ({ children }) => {
       console.log(response);
 
       setData({ token, customer, userType });
-    }
-    else if (userType == "Company") {
+    } else if (userType === 'Company') {
       const response = await api.post('sessionsCompany', {
         email,
         password,
@@ -76,7 +73,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
       setData({ token, customer, userType });
     }
-
   }, []);
 
   const signOut = useCallback(() => {
@@ -88,7 +84,9 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.customer, signIn, signOut, userType: data.userType }}>
+    <AuthContext.Provider
+      value={{ user: data.customer, signIn, signOut, userType: data.userType }}
+    >
       {children}
     </AuthContext.Provider>
   );

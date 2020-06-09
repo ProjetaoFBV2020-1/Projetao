@@ -43,9 +43,9 @@ const SignIn: React.FC = () => {
         await signIn({
           email: data.email,
           password: data.password,
-          userType: "Company",
+          userType: 'Company',
         });
-        history.push('/dashboardCompany');
+        history.push('/dashboard-company');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -79,7 +79,6 @@ const SignIn: React.FC = () => {
             />
             <Button type="submit">Entrar</Button>
             <Link to="/forgot-password">Esqueci minha senha</Link>
-
           </Form>
           <Link to="/signup">
             <FiLogIn />

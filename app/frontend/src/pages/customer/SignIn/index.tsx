@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
         await signIn({
           email: data.email,
           password: data.password,
-          userType: "Customer",
+          userType: 'Customer',
         });
         history.push('/dashboard');
       } catch (err) {
@@ -80,7 +80,7 @@ const SignIn: React.FC = () => {
             />
             <Button type="submit">Entrar</Button>
             <Link to="/forgot-password">Esqueci minha senha</Link>
-
+            <Link to="/signin-company">Sou empresa</Link>
           </Form>
           <Link to="/signup">
             <FiLogIn />

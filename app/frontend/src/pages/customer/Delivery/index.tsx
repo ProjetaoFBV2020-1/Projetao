@@ -68,6 +68,7 @@ const Delivery: React.FC = () => {
   const handleFinishOrder = useCallback(() => {
     const copyOfCart = cart.slice();
     const order = [] as OrderItem[];
+
     copyOfCart.forEach((element) => {
       order.push({
         item_id: element.item_id,
@@ -75,16 +76,17 @@ const Delivery: React.FC = () => {
         description: element.description,
       });
     });
-    api
-      .post('/items', {
-        company_id: id,
-        description: '',
-        items: order,
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
-  }, []);
+
+    const data = {
+      company_id: id,
+      description: '',
+      items: order,
+    };
+
+    api.post('/ordersCustomer', data).then((response) => {
+      console.log(response.data);
+    });
+  }, [cart]);
 
   useEffect(() => {
     let newTotalValue = 0;

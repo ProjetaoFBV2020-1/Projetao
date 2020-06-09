@@ -42,7 +42,7 @@ export default class ItemController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { company_id } = request.body;
+        const { company_id } = request.query;
 
         const listItemsCompanyService = container.resolve(
             ListItemsCompanyService,
