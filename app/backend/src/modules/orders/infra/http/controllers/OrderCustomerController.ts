@@ -9,7 +9,7 @@ export default class OrderCustomerController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { company_id, status, description, orderItems } = request.body;
+        const { company_id, description, orderItems } = request.body;
         const customer_id = request.user.id;
 
         const createOrder = container.resolve(CreateOrderService);
@@ -17,7 +17,6 @@ export default class OrderCustomerController {
         const order = await createOrder.execute({
             company_id,
             customer_id,
-            status,
             description,
             orderItems,
         });

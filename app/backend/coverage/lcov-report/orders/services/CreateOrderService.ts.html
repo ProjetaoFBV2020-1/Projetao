@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>0/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/22</span>
             </div>
         
             
@@ -122,8 +122,10 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,41 +148,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,63 +191,64 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { inject, injectable } from 'tsyringe';</span>
 &nbsp;
-// import AppError from '@shared/errors/AppError';
+<span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
+import IItemsRepository from '@modules/items/repositories/IItemsRepository';
 import Order from '../infra/typeorm/entities/Order';
-import OrderItems from '../infra/typeorm/entities/Order_item';
 import IOrdersRepository from '../repositories/IOrdersRepository';
 import IOrderItemsRepository from '../repositories/IOrderItemsRepository';
+import ICreateOrderItemDTO from '../dtos/ICreateOrderItemDTO';
 &nbsp;
 interface IRequest {
     company_id: string;
     customer_id: string;
-    status: string;
     description: string;
-    items: OrderItems[];
+    orderItems: ICreateOrderItemDTO[];
 }
-&nbsp;
-let orderTotalValue = <span class="cstat-no" title="statement not covered" >0;</span>
 &nbsp;
 @injectable()
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >class <span class="cstat-no" title="statement not covered" >C</span></span>reateOrderService {</span>
 <span class="fstat-no" title="function not covered" >    constructor(</span>
         @inject('OrdersRepository')
         private <span class="cstat-no" title="statement not covered" >ordersRepository: IOrdersRepository,</span>
+&nbsp;
         @inject('OrderItemsRepository')
         private <span class="cstat-no" title="statement not covered" >orderItemsRepository: IOrderItemsRepository,</span>
+&nbsp;
+        @inject('ItemsRepository')
+        private <span class="cstat-no" title="statement not covered" >itemsRepository: IItemsRepository,</span>
     ) {}
 &nbsp;
 <span class="fstat-no" title="function not covered" >    public async <span class="cstat-no" title="statement not covered" >e</span>xecute({</span>
         company_id<span class="cstat-no" title="statement not covered" >,</span>
         customer_id<span class="cstat-no" title="statement not covered" >,</span>
-        status<span class="cstat-no" title="statement not covered" >,</span>
         description<span class="cstat-no" title="statement not covered" >,</span>
-        items<span class="cstat-no" title="statement not covered" >,</span>
+        orderItems<span class="cstat-no" title="statement not covered" >,</span>
     }: IRequest): Promise&lt;Order&gt; {
         const <span class="cstat-no" title="statement not covered" >order = <span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >await this.ordersRepository.create({</span></span></span>
             company_id,
             customer_id,
-            status,
             description,
         });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        items.forEach(<span class="fstat-no" title="function not covered" >async i</span>tem<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > =&gt; {</span></span></span>
-<span class="cstat-no" title="statement not covered" >            item.order_id = order.id_order;</span>
-<span class="cstat-no" title="statement not covered" >            item.total_value = item.item_value * item.quantity;</span>
-<span class="cstat-no" title="statement not covered" >            await this.orderItemsRepository.create(item);</span>
+<span class="cstat-no" title="statement not covered" >        orderItems.forEach(<span class="fstat-no" title="function not covered" >async o</span>rderItem<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > =&gt; {</span></span></span>
+            const <span class="cstat-no" title="statement not covered" >item = <span class="cstat-no" title="statement not covered" >await this.itemsRepository.findById(orderItem.item_id);</span></span>
+&nbsp;
+            if (<span class="cstat-no" title="statement not covered" >!i</span>tem) {
+<span class="cstat-no" title="statement not covered" >                await this.ordersRepository.deleteOrder(order);</span>
+<span class="cstat-no" title="statement not covered" >                await this.orderItemsRepository.deleteByOrderId(order.id_order);</span>
+<span class="cstat-no" title="statement not covered" >                throw new AppError('item not found');</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            await this.orderItemsRepository.create({</span>
+                order_id: order.id_order,
+                item_id: orderItem.item_id,
+                name: item.name,
+                description: orderItem.description,
+                item_value: item.price,
+                quantity: orderItem.quantity,
+                total_value: item.price * orderItem.quantity,
+            });
         });
-&nbsp;
-        // Erro aqui, tenta buscar o order_id mas ainda não foi cadastrado na order_items
-        const <span class="cstat-no" title="statement not covered" >orderItems = <span class="cstat-no" title="statement not covered" >await this.orderItemsRepository.findByOrderId(</span></span>
-            order.id_order,
-        );
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        orderItems.forEach(<span class="fstat-no" title="function not covered" >orderItem </span>=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            orderTotalValue += orderItem.total_value;</span>
-        });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        order.total_value = orderTotalValue;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        await this.ordersRepository.save(order);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        return order;</span>
     }
@@ -259,7 +262,7 @@ let orderTotalValue = <span class="cstat-no" title="statement not covered" >0;</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jun 08 2020 07:17:55 GMT-0300 (GMT-03:00)
+                at Tue Jun 09 2020 00:55:47 GMT-0300 (GMT-03:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>
