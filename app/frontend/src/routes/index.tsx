@@ -11,12 +11,14 @@ import ForgotPassword from '../pages/customer/ForgotPassword';
 import Delivery from '../pages/customer/Delivery';
 import Orders from '../pages/customer/Orders';
 import DashBoardCompany from '../pages/company/Dashboard';
+import ProfileCustomer from '../pages/customer/Profile';
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
+    <Route path="/profile-customer" component={ProfileCustomer} isPrivate />
     <Route path="/signin-company" exact component={SignInCompany} />
-    <Route path="/dashboard-company" component={DashBoardCompany} />
+    <Route path="/dashboard-company" component={DashBoardCompany} isPrivate />
     <Route path="/signup" component={SignUp} />
     <Route path="/signup-company" component={SignUpCompany} />
     <Route path="/forgot-password" component={ForgotPassword} />

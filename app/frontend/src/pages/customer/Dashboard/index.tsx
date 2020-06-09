@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Content, Schedule, Grid } from './styles';
+import { Container, Content, Schedule, Grid, StyledLink } from './styles';
 import Header from '../../../components/Header';
 import { Link } from 'react-router-dom';
 import api from '../../../services/api';
+import { FiEdit } from 'react-icons/fi';
 
 interface company {
   cnpj: string;
@@ -35,7 +36,7 @@ const Dashboard: React.FC = () => {
         </Schedule>
         <Grid>
           {companysList.map((company) => (
-            <Link
+            <StyledLink
               key={company.id_company}
               to={`/delivery/${company.company_name}/${company.id_company}`}
             >
@@ -44,9 +45,9 @@ const Dashboard: React.FC = () => {
                   src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
                   alt={company.id_company}
                 />
-                <strong>{company.trade_name}</strong>
+                <h3>{company.trade_name}</h3>
               </div>
-            </Link>
+            </StyledLink>
           ))}
         </Grid>
       </Content>

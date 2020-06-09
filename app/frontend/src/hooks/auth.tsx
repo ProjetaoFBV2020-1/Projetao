@@ -15,7 +15,7 @@ interface SignInCredentials {
 
 interface AuthState {
   token: string;
-  customer: User;
+  user: User;
   userType: string;
 }
 
@@ -31,11 +31,11 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@OffTalk:token');
-    const customer = localStorage.getItem('@OffTalk:user');
+    const user = localStorage.getItem('@OffTalk:user');
     const userType = localStorage.getItem('@Offtalk:userType');
     api.defaults.headers.authorization = `Bearer ${token}`;
-    if (token && customer && userType) {
-      return { token, customer: JSON.parse(customer), userType };
+    if (token && user && userType) {
+      return { token, user: JSON.parse(user), userType };
     }
     return {} as AuthState;
   });
@@ -51,27 +51,22 @@ const AuthProvider: React.FC = ({ children }) => {
       localStorage.setItem('@OffTalk:user', JSON.stringify(customer));
       localStorage.setItem('@Offtalk:userType', userType);
       api.defaults.headers.authorization = `Bearer ${token}`;
-
-      console.log('Customer');
-      console.log(response);
-
-      setData({ token, customer, userType });
+      const user = customer;
+      setData({ token, user, userType });
     } else if (userType === 'Company') {
       const response = await api.post('sessionsCompany', {
         email,
         password,
       });
-      const { token, customer } = response.data;
+      const { token, company } = response.data;
       localStorage.setItem('@OffTalk:token', token);
-      localStorage.setItem('@OffTalk:user', JSON.stringify(customer));
+      localStorage.setItem('@OffTalk:user', JSON.stringify(company));
       localStorage.setItem('@Offtalk:userType', userType);
 
       api.defaults.headers.authorization = `Bearer ${token}`;
 
-      console.log('Company');
-      console.log(response);
-
-      setData({ token, customer, userType });
+      const user = company;
+      setData({ token, user, userType });
     }
   }, []);
 
@@ -85,7 +80,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.customer, signIn, signOut, userType: data.userType }}
+      value={{ user: data.user, signIn, signOut, userType: data.userType }}
     >
       {children}
     </AuthContext.Provider>

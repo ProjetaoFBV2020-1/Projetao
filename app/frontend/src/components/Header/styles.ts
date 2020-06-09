@@ -1,8 +1,22 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeaderDiv = styled.header`
   background: #28262e;
 `;
+
+export const StyledLink = styled(Link)`
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+
+  svg {
+    color: #999591;
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 export const HeaderContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;
@@ -12,9 +26,10 @@ export const HeaderContent = styled.div`
   > img {
     height: 80px;
   }
-
+  
+  }
   button {
-    margin-left: auto;
+    margin-left:20px;
     background: transparent;
     border: 0;
 

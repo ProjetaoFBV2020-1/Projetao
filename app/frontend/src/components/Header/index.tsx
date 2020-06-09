@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { HeaderDiv, HeaderContent, Profile } from './styles';
+import { HeaderDiv, HeaderContent, Profile, StyledLink } from './styles';
 import logoImg from '../../assets/logo_dark_mode.svg';
 import { useAuth } from '../../hooks/auth';
 import { FiPower } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi';
 
 const Header: React.FC = () => {
-  const { signOut, user } = useAuth();
+  const { signOut, user, userType } = useAuth();
+
   return (
     <HeaderDiv>
       <HeaderContent>
@@ -22,6 +24,16 @@ const Header: React.FC = () => {
             <strong>{user.name}</strong>
           </div>
         </Profile>
+        {userType === 'Customer' && (
+          <StyledLink type="button" to="/profile-customer">
+            <FiEdit />
+          </StyledLink>
+        )}
+        {userType === 'Company' && (
+          <StyledLink type="button" to="/profile-customer">
+            <FiEdit />
+          </StyledLink>
+        )}
         <button type="button" onClick={signOut}>
           <FiPower />
         </button>

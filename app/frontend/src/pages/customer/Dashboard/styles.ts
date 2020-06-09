@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div``;
 
@@ -31,8 +32,26 @@ export const Grid = styled.div`
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
   max-width: 1120px;
+`;
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
   div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    border: 1px solid #787a7d;
+    padding: 10px 0;
+
+    > h3 {
+      list-style: none;
+    }
+    > img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
   }
 `;
