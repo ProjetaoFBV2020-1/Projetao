@@ -7,7 +7,7 @@ import {
     OneToMany,
 } from 'typeorm';
 import Order from '@modules/orders/infra/typeorm/entities/Order';
-import AdressCustomer from './AdressCustomer';
+import AddressCustomer from './AddressCustomer';
 
 @Entity('customers')
 class Customer {
@@ -45,10 +45,10 @@ class Customer {
     orders: Order;
 
     @OneToMany(
-        () => AdressCustomer,
-        adresses_customer => adresses_customer.customer_id,
+        () => AddressCustomer,
+        addresses_customer => addresses_customer.customer_id,
     )
-    adresses: AdressCustomer[];
+    adresses: AddressCustomer[];
 }
 
 export default Customer;

@@ -3,6 +3,7 @@ import { Router } from 'express';
 // Rotas de clientes
 import customersRouter from '@modules/customers/infra/http/routes/customers.routes';
 import companiesRouter from '@modules/companies/infra/http/routes/companies.routes';
+import addressCustomerRouter from '@modules/customers/infra/http/routes/addressCustomer.routes';
 
 // Rotas para pedidos
 import ordersCustomerRouter from '@modules/orders/infra/http/routes/ordersCustomer.routes';
@@ -42,6 +43,7 @@ routes.use('/profileCompany', profileCompanyRouter);
 routes.use('/sessionsCustomer', sessionsCustomerRouter);
 routes.use('/passwordCustomer', passwordCustomerRouter);
 routes.use('/profileCustomer', profileCustomerRouter);
+routes.use('/addressCustomer', addressCustomerRouter);
 
 routes.use('/addressCompany', addressesCompanyRouter);
 
