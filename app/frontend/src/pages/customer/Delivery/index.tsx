@@ -6,7 +6,6 @@ import api from '../../../services/api';
 import { useParams, Link } from 'react-router-dom';
 import Button from '../../../components/Button';
 import { useToast } from '../../../hooks/toast';
-
 interface Item {
   id_item: string;
   company_id: string;
@@ -47,6 +46,26 @@ const Delivery: React.FC = () => {
     });
   }, []);
 
+  const handleRemoveMeal = useCallback(
+    (item: CartItem) => {
+      const newCart = cart.slice();
+      try {
+        const returnedValue = newCart.find(
+          (obj) => obj.item_id === item.item_id,
+        );
+        newCart[newCart.indexOf(returnedValue as CartItem)].quantity -= 1;
+      } catch (error) {
+        addToast({
+          type: 'error',
+          title: 'Erro',
+          description: 'Houve um erro ao remover o item',
+        });
+      } finally {
+        setCart(newCart);
+      }
+    },
+    [cart],
+  );
   const handleAddMeal = useCallback(
     (item: Item) => {
       const newCart = cart.slice();
