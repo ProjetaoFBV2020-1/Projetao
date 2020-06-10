@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Content, Cart, Grid, ItemBox, CartItem } from './styles';
 import Header from '../../../components/Header';
 import api from '../../../services/api';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import Button from '../../../components/Button';
 import { useToast } from '../../../hooks/toast';
 interface Item {
@@ -37,7 +37,7 @@ const Delivery: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([] as CartItem[]);
   const { id, companyName } = useParams();
   const { addToast } = useToast();
-
+  const history = useHistory();
   const [totalValue, setTotalValue] = useState<number>();
 
   useEffect(() => {
@@ -107,13 +107,14 @@ const Delivery: React.FC = () => {
     };
 
     api.post('/ordersCustomer', data).then((response) => {
-      console.log(response.data);
+      const { order, order_items } = response.data;
       try {
         addToast({
           type: 'success',
           title: 'Sucesso',
           description: 'Pedido feito com sucesso.',
         });
+        history.push(`/order/${order.company_name}/1/${order.id_order}`);
       } catch (error) {
         addToast({
           type: 'error',
