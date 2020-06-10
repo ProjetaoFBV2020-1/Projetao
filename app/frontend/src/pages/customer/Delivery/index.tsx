@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import api from '../../../services/api';
 import { useParams, Link } from 'react-router-dom';
 import Button from '../../../components/Button';
+import { useToast } from '../../../hooks/toast';
 interface Item {
   id_item: string;
   company_id: string;
@@ -35,6 +36,8 @@ const Delivery: React.FC = () => {
   const [itemList, setItemList] = useState<Item[]>([] as Item[]);
   const [cart, setCart] = useState<CartItem[]>([] as CartItem[]);
   const { id, companyName } = useParams();
+  const { addToast } = useToast();
+
   const [totalValue, setTotalValue] = useState<number>();
 
   useEffect(() => {
@@ -80,11 +83,24 @@ const Delivery: React.FC = () => {
     const data = {
       company_id: id,
       description: '',
-      items: order,
+      orderItems: order,
     };
 
     api.post('/ordersCustomer', data).then((response) => {
       console.log(response.data);
+      try {
+        addToast({
+          type: 'success',
+          title: 'Sucesso',
+          description: 'Pedido feito com sucesso.',
+        });
+      } catch (error) {
+        addToast({
+          type: 'error',
+          title: 'Erro',
+          description: 'Houve um erro ao fazer pedido',
+        });
+      }
     });
   }, [cart]);
 

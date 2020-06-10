@@ -101,7 +101,6 @@ const Profile: React.FC = () => {
   return (
     <>
       <Header />
-
       <Container>
         <Content>
           <Form ref={formRef} onSubmit={handleSubmit}>
