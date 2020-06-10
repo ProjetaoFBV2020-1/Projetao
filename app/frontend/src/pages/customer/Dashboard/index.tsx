@@ -26,11 +26,14 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <Header />
-      <StyledLink type="button" to="/orders">
-        <Button>Orders</Button>
-      </StyledLink>
+      
 
       <Content>
+      <StyledLink type="button" to="/orders">
+        
+        <Button>Pedidos</Button>
+        
+      </StyledLink>
         <Schedule>
           <h1>Dale boy</h1>
           <p>

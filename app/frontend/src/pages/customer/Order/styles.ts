@@ -9,6 +9,7 @@ export const Container = styled.div`
     margin: 0 auto;
     border: solid 1px;
     border-radius: 10px;
+    max-width: 200px;
     
     > div {
       display: flex;
