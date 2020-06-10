@@ -13,7 +13,9 @@ const Header: React.FC = () => {
   return (
     <HeaderDiv>
       <HeaderContent>
-        <img src={logoImg} alt="OffTalk" />
+        <Link to="/">
+          <img src={logoImg} alt="OffTalk" />
+        </Link>
         <Profile>
           <img
             src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
@@ -30,7 +32,7 @@ const Header: React.FC = () => {
           </StyledLink>
         )}
         {userType === 'Company' && (
-          <StyledLink type="button" to="/profile-customer">
+          <StyledLink type="button" to="/profile-company">
             <FiEdit />
           </StyledLink>
         )}
