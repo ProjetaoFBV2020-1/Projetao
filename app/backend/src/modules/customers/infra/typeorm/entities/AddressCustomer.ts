@@ -3,13 +3,19 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity('addresses_customer')
-class AdressCustomer {
-    @PrimaryColumn()
+class AddressCustomer {
+    @PrimaryGeneratedColumn('uuid')
+    id_address_customer: string;
+
+    @Column()
     customer_id: string;
+
+    @Column()
+    cep: string;
 
     @Column()
     state: string;
@@ -39,4 +45,4 @@ class AdressCustomer {
     updated_at: Date;
 }
 
-export default AdressCustomer;
+export default AddressCustomer;
