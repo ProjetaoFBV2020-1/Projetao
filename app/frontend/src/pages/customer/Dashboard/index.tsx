@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
             >
               <div>
                 <img
-                  src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
+                  src="https://avatars1.githubusercontent.com/u/39508440?s=460&v=4"
                   alt={company.id_company}
                 />
                 <h3>{company.trade_name}</h3>

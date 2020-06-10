@@ -184,7 +184,7 @@ const Delivery: React.FC = () => {
 
                       <div className="content">
                         <img
-                          src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
+                          src="https://avatars1.githubusercontent.com/u/39508440?s=460&v=4"
                           alt={item.id_item}
                         />
                       </div>
