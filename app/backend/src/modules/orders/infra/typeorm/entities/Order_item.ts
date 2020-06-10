@@ -3,12 +3,16 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
 } from 'typeorm';
+// import Order from './Order';
 
 @Entity('order_items')
 class Order_item {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('uuid')
+    id_order_item: string;
+
+    @Column()
     order_id: string;
 
     @Column()
@@ -21,10 +25,15 @@ class Order_item {
     item_value: number;
 
     @Column()
+    name: string;
+
+    @Column()
     total_value: number;
 
     @Column()
     description: string;
+
+    // @ManyToOne(() => Order, order => order.id_order)
 
     @CreateDateColumn()
     created_at: Date;

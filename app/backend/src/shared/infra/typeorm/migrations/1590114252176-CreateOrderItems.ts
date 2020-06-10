@@ -8,6 +8,13 @@ export default class CreateOrderItems1590114252176
                 name: 'order_items',
                 columns: [
                     {
+                        name: 'id_order_item',
+                        type: 'uuid',
+                        isPrimary: true,
+                        generationStrategy: 'uuid',
+                        default: 'uuid_generate_v4()',
+                    },
+                    {
                         name: 'order_id',
                         type: 'uuid',
                     },

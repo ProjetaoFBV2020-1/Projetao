@@ -20,6 +20,12 @@ class Order {
     customer_id: string;
 
     @Column()
+    company_name: string;
+
+    @Column()
+    customer_name: string;
+
+    @Column()
     status: string;
 
     @Column()

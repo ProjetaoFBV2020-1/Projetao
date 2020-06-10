@@ -7,6 +7,7 @@ import companiesRouter from '@modules/companies/infra/http/routes/companies.rout
 // Rotas para pedidos
 import ordersCustomerRouter from '@modules/orders/infra/http/routes/ordersCustomer.routes';
 import ordersCompanyRouter from '@modules/orders/infra/http/routes/ordersCompany.routes';
+import ordersRouter from '@modules/orders/infra/http/routes/orders.routes';
 
 // Rota de items
 import itemsRouter from '@modules/items/infra/http/routes/items.routes';
@@ -30,6 +31,7 @@ routes.use('/customers', customersRouter);
 
 routes.use('/ordersCustomer', ordersCustomerRouter);
 routes.use('/ordersCompany', ordersCompanyRouter);
+routes.use('/orders', ordersRouter);
 
 routes.use('/items', itemsRouter);
 
