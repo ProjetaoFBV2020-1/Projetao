@@ -66,6 +66,26 @@ const Delivery: React.FC = () => {
     },
     [cart],
   );
+  const handleAddMeall = useCallback(
+    (item: CartItem) => {
+      const newCart = cart.slice();
+      try {
+        const returnedValue = newCart.find(
+          (obj) => obj.item_id === item.item_id,
+        );
+        newCart[newCart.indexOf(returnedValue as CartItem)].quantity += 1;
+      } catch (error) {
+        addToast({
+          type: 'error',
+          title: 'Erro',
+          description: 'Houve um erro ao adicionar o item',
+        });
+      } finally {
+        setCart(newCart);
+      }
+    },
+    [cart],
+  );
   const handleAddMeal = useCallback(
     (item: Item) => {
       const newCart = cart.slice();
@@ -88,6 +108,7 @@ const Delivery: React.FC = () => {
     },
     [cart],
   );
+
   const handleFinishOrder = useCallback(() => {
     const copyOfCart = cart.slice();
     const order = [] as OrderItem[];
