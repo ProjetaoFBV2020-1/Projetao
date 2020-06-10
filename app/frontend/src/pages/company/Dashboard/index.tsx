@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../../../hooks/toast';
 import { Container, OrderDiv, Content, Item } from './styles';
+import { Link, useHistory } from 'react-router-dom';
 
 import Header from '../../../components/Header';
 import api from '../../../services/api';
@@ -37,6 +38,7 @@ interface Response {
 }
 
 const DashboardCompany: React.FC = () => {
+  const history  = useHistory();
   const { addToast } = useToast();
   const [order_items, setOrderItems] = useState<Order_item[]>([] as Order_item[]);
   const [orders, setOrders] = useState<Order[]>([] as Order[]);
@@ -133,6 +135,12 @@ const DashboardCompany: React.FC = () => {
   return (
     <>
       <Header />
+      <Link to= '/finished-orders'>
+      <Button>Pedidos finalizados</Button>
+      </Link>
+      <Link to= '/create-item'>
+      <Button>Adicionar novo prato</Button>
+      </Link>
       <Container>
         <Content>
           <OrderDiv>
