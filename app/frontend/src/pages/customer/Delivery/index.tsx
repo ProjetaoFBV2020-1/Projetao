@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {FiMinusCircle, FiPlusCircle} from 'react-icons/fi'
+import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { Container, Content, Cart, Grid, ItemBox, CartItem } from './styles';
 import Header from '../../../components/Header';
 import api from '../../../services/api';
@@ -53,12 +53,36 @@ const Delivery: React.FC = () => {
         const returnedValue = newCart.find(
           (obj) => obj.item_id === item.item_id,
         );
-        newCart[newCart.indexOf(returnedValue as CartItem)].quantity -= 1;
+        if (returnedValue?.quantity === 1) {
+          newCart.splice(newCart.indexOf(returnedValue), 1);
+        } else {
+          newCart[newCart.indexOf(returnedValue as CartItem)].quantity -= 1;
+        }
       } catch (error) {
         addToast({
           type: 'error',
           title: 'Erro',
           description: 'Houve um erro ao remover o item',
+        });
+      } finally {
+        setCart(newCart);
+      }
+    },
+    [cart],
+  );
+  const handleAddMeall = useCallback(
+    (item: CartItem) => {
+      const newCart = cart.slice();
+      try {
+        const returnedValue = newCart.find(
+          (obj) => obj.item_id === item.item_id,
+        );
+        newCart[newCart.indexOf(returnedValue as CartItem)].quantity += 1;
+      } catch (error) {
+        addToast({
+          type: 'error',
+          title: 'Erro',
+          description: 'Houve um erro ao adicionar o item',
         });
       } finally {
         setCart(newCart);
@@ -88,6 +112,7 @@ const Delivery: React.FC = () => {
     },
     [cart],
   );
+
   const handleFinishOrder = useCallback(() => {
     const copyOfCart = cart.slice();
     const order = [] as OrderItem[];
@@ -140,35 +165,33 @@ const Delivery: React.FC = () => {
         <Content>
           <Grid>
             <section>
-            <h1>Menu</h1>
+              <h1>Menu</h1>
             </section>
             <section>
-            {itemList.map((item) => (
-              <button
-                onClick={() => {
-                  handleAddMeal(item);
-                }}
-              >
-                <ItemBox key={item.id_item}>
-                  <div className="container">
-                    
-                    <div className="content">
-                      <strong>{item.name}</strong>
-                      <strong>{item.description}</strong>
-                      <strong>{item.price}</strong>
+              {itemList.map((item) => (
+                <button
+                  onClick={() => {
+                    handleAddMeal(item);
+                  }}
+                >
+                  <ItemBox key={item.id_item}>
+                    <div className="container">
+                      <div className="content">
+                        <strong>{item.name}</strong>
+                        <strong>{item.description}</strong>
+                        <strong>{item.price}</strong>
+                      </div>
+
+                      <div className="content">
+                        <img
+                          src="https://avatars1.githubusercontent.com/u/39508440?s=460&v=4"
+                          alt={item.id_item}
+                        />
+                      </div>
                     </div>
-                    
-                  
-                    <div className="content">
-                      <img
-                        src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
-                        alt={item.id_item}
-                      />
-                    </div>
-                  </div>
-                </ItemBox>
-              </button>
-            ))}
+                  </ItemBox>
+                </button>
+              ))}
             </section>
           </Grid>
         </Content>
@@ -180,18 +203,28 @@ const Delivery: React.FC = () => {
           {cart.map((item) => (
             <CartItem>
               <section className="cartcontent">
-              <div>
-                <h2>
-                  {item.quantity}x {item.name} 
-                </h2>
-                <h2> R$ {item.price}</h2>
-              </div>
-              <div className="fiButtons">
-                <FiPlusCircle></FiPlusCircle>
-                
-                <FiMinusCircle></FiMinusCircle>
-                
-              </div>
+                <div>
+                  <h2>
+                    {item.quantity}x {item.name}
+                  </h2>
+                  <h2> R$ {item.price}</h2>
+                </div>
+                <div className="fiButtons">
+                  <button
+                    onClick={() => {
+                      handleAddMeall(item);
+                    }}
+                  >
+                    <FiPlusCircle></FiPlusCircle>
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleRemoveMeal(item);
+                    }}
+                  >
+                    <FiMinusCircle></FiMinusCircle>
+                  </button>
+                </div>
               </section>
             </CartItem>
           ))}
