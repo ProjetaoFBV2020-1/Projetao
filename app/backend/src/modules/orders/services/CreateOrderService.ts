@@ -16,6 +16,10 @@ interface IRequest {
 
 @injectable()
 class CreateOrderService {
+    private totalPrice = 0;
+
+    // private id_items = [];
+
     constructor(
         @inject('OrdersRepository')
         private ordersRepository: IOrdersRepository,
@@ -38,26 +42,39 @@ class CreateOrderService {
             customer_id,
             description,
         });
+        const id_items: string[] = [];
 
-        orderItems.forEach(async orderItem => {
-            const item = await this.itemsRepository.findById(orderItem.item_id);
+        orderItems.map(orderItem => id_items.push(orderItem.item_id));
 
-            if (!item) {
-                await this.ordersRepository.deleteOrder(order);
-                await this.orderItemsRepository.deleteByOrderId(order.id_order);
-                throw new AppError('item not found');
+        const items = await this.itemsRepository.findByIds(id_items);
+
+        if (!items) {
+            await this.ordersRepository.deleteOrder(order);
+            await this.orderItemsRepository.deleteByOrderId(order.id_order);
+            throw new AppError('item not found');
+        }
+
+        // eslint-disable-next-line array-callback-return
+        orderItems.map(orderItem => {
+            const itemOrder = items.find(
+                item => orderItem.item_id === item.id_item,
+            );
+            if (!itemOrder) {
+                return;
             }
+            orderItem.item_value = itemOrder.price;
+            orderItem.name = itemOrder.name;
+            orderItem.order_id = order.id_order;
+            orderItem.total_value = itemOrder.price * orderItem.quantity;
+            orderItem.order_id = order.id_order;
+            orderItem.description = order.description;
 
-            await this.orderItemsRepository.create({
-                order_id: order.id_order,
-                item_id: orderItem.item_id,
-                name: item.name,
-                description: orderItem.description,
-                item_value: item.price,
-                quantity: orderItem.quantity,
-                total_value: item.price * orderItem.quantity,
-            });
+            this.totalPrice += orderItem.total_value;
         });
+
+        order.total_value = this.totalPrice;
+
+        await this.ordersRepository.save(order);
 
         return order;
     }
