@@ -114,7 +114,7 @@ JWT, [id_item]:string e ARQUIVO de imagem
 
 --*auth* POST - Cria uma order com items
 Parâmetros necessários:
-[company_id]:string,[customer_id]:string,[status]:string,[description]:string, [items]:Items[]
+[company_id]:string,[customer_id]:string,[description]:string, [items]:Items[]
 
 --*auth* GET - Recebe todas as orders do customer
 Parâmetros necessários:

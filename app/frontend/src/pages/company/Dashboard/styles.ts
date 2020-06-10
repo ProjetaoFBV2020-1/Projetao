@@ -34,4 +34,9 @@ export const Content = styled.div`
 
 export const Item = styled.div`
   margin-bottom: 24px;
+  border-radius: 5px;
+  border: 1px solid #787a7d;
+  div {
+  border: none;
+  }
 `;
