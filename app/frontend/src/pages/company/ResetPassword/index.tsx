@@ -1,57 +1,53 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
+
+import { Container, Content, AnimationContainer, Background } from './styles';
+import { useParams, Link, useHistory } from 'react-router-dom';
+import api from '../../../services/api';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import getValidationErrors from '../../../utils/getValidationErrors';
-import { Link, useHistory } from 'react-router-dom';
-
-import api from '../../../services/api';
-
 import { useToast } from '../../../hooks/toast';
 
 import logoImg from '../../../assets/logo_dark_mode.svg';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import { Container, Content, AnimationContainer, Background } from './styles';
 
-interface SignUpFormData {
-  name: string;
-  email: string;
-  date_birth: string;
+interface RecoverPasswordFormData {
+  token: string;
   password: string;
-  phone: string;
 }
 
-const SignUp: React.FC = () => {
+const ResetPassword: React.FC = () => {
+  const { token } = useParams();
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
-
+  // rota /passwordCustomer/reset
+  useEffect(() => {
+    console.log(token);
+  }, []);
   const handleSubmit = useCallback(
-    async (data: SignUpFormData) => {
+    async (data: RecoverPasswordFormData) => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          cnpj: Yup.string().required('CNPJ obrigatório'),
-          company_name: Yup.string().required('Razão Social obrigatória'),
-          trade_name: Yup.string().required('Nome Fantasia obrigatório'),
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
         });
         await schema.validate(data, {
           abortEarly: false,
         });
+        console.log(data);
+        data.token = token;
 
-        await api.post('/companies', data);
+        await api.post('/passwordCompany/reset', data);
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
+          title: 'Senha alterada com sucesso!',
           description: 'Você já pode fazer seu login',
         });
-        history.push('/signin-company');
+        history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -61,14 +57,13 @@ const SignUp: React.FC = () => {
         }
         addToast({
           type: 'error',
-          title: 'Erro no cadastro',
-          description: 'Ocorreu um erro ao fazer cadastro, tente novamente.',
+          title: 'Erro ao alterar senha',
+          description: 'Ocorreu um erro ao alterar senha, tente novamente.',
         });
       }
     },
     [addToast, history],
   );
-
   return (
     <Container>
       <Background />
@@ -76,19 +71,8 @@ const SignUp: React.FC = () => {
         <AnimationContainer>
           <img src={logoImg} alt="offtalk" />
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu Cadastro</h1>
-            <Input name="cnpj" icon={FiUser} placeholder="Cnpj" />
-            <Input
-              name="company_name"
-              icon={FiUser}
-              placeholder="Razão Social"
-            />
-            <Input
-              name="trade_name"
-              icon={FiUser}
-              placeholder="Nome Fantasia"
-            />
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <h1>Digite sua nova senha</h1>
+
             <Input
               name="password"
               icon={FiLock}
@@ -107,4 +91,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default ResetPassword;

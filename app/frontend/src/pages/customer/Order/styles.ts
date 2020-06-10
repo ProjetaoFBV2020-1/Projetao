@@ -10,5 +10,13 @@ export const Container = styled.div`
   align-items: stretch;
   > div {
     margin: 0 auto;
+    > div {
+      display: flex;
+      flex-direction: row;
+      margin: 15px 0px;
+      > h1 {
+        margin: 0 8px;
+      }
+    }
   }
 `;

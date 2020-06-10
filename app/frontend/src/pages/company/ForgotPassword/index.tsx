@@ -40,7 +40,7 @@ const ForgotPassword: React.FC = () => {
         });
         // recuperação de senha
 
-        await api.post('/passwordCustomer/forgot', {
+        await api.post('/passwordCompany/forgot', {
           email: data.email,
         });
         addToast({
@@ -78,7 +78,7 @@ const ForgotPassword: React.FC = () => {
             <Input name="email" icon={FiMail} placeholder="E-mail" />
             <Button type="submit">Recuperar</Button>
           </Form>
-          <Link to="/">
+          <Link to="/signin-company">
             <FiLogIn />
             Voltar ao login
           </Link>

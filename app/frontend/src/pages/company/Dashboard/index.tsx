@@ -6,28 +6,52 @@ import Header from '../../../components/Header';
 import api from '../../../services/api';
 import Button from '../../../components/Button';
 
-interface Order {
-  id_order: string;
-  id_company: string;
-  customer_id: string;
+interface Order_item {
+  id_order_item: string;
+  order_id: string;
+  item_id: string;
+  quantity: number;
+  item_value: number;
+  name: string;
+  total_value: number;
   description: string;
+  created_at: string;
+  updated_at: string;
+}
+interface Order {
+  company_id: string;
+  company_name: string;
+  created_at: string;
+  customer_id: string;
+  customer_name: string;
+  description: string;
+  id_order: string;
   status: number;
   total_value: number;
+  updated_at: string;
+  order_items?: Order_item[];
+}
+interface Response {
+  orders: Order[];
+  order_items: Order_item[];
 }
 
 const DashboardCompany: React.FC = () => {
   const { addToast } = useToast();
-  const [orderList, setOrderList] = useState<Order[]>([] as Order[]);
+  const [order_items, setOrderItems] = useState<Order_item[]>([] as Order_item[]);
+  const [orders, setOrders] = useState<Order[]>([] as Order[]);
 
   const refresh = useCallback(() => {
-    api.get<Order[]>(`/ordersCompany`).then((response) => {
-      setOrderList(response.data);
+    api.get<Response>('/ordersCompany').then((response) => {
+      const { order_items, orders } = response.data;
+      setOrders(orders);
+      setOrderItems(order_items);
     });
   }, []);
 
   const handleAcceptOrder = useCallback((order: Order) => {
     const data = {
-      id_company: order.id_company,
+      id_company: order.company_id,
       id_order: order.id_order,
       status: 2,
     };
@@ -36,7 +60,7 @@ const DashboardCompany: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Sucesso',
-          description: 'Status modificado com sucesso.',
+          description: 'Status definido como: Pedido ativo.',
         });
         refresh();
       } catch (error) {
@@ -51,7 +75,7 @@ const DashboardCompany: React.FC = () => {
 
   const handleFinishOrder = useCallback((order: Order) => {
     const data = {
-      id_company: order.id_company,
+      id_company: order.company_id,
       id_order: order.id_order,
       status: 4,
     };
@@ -60,7 +84,7 @@ const DashboardCompany: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Sucesso',
-          description: 'Status modificado com sucesso.',
+          description: 'Status definido como: Concluido.',
         });
         refresh();
       } catch (error) {
@@ -75,7 +99,7 @@ const DashboardCompany: React.FC = () => {
 
   const handleAlterOrder = useCallback((order: Order) => {
     const data = {
-      id_company: order.id_company,
+      id_company: order.company_id,
       id_order: order.id_order,
       status: 2,
     };
@@ -84,7 +108,7 @@ const DashboardCompany: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Sucesso',
-          description: 'Status modificado com sucesso.',
+          description: 'Status definido como: Pedido ativo.',
         });
         refresh();
       } catch (error) {
@@ -98,13 +122,14 @@ const DashboardCompany: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    api.get<Order[]>(`/ordersCompany`).then((response) => {
-      console.log(response.data);
-      setOrderList(response.data);
-      setInterval(refresh, 1000);
+    api.get<Response>('/ordersCompany').then((response) => {
+      const { order_items, orders } = response.data;
+      setOrderItems(order_items);
+      setOrders(orders);
+      setInterval(refresh, 5000);
     });
   }, []);
-  
+
   return (
     <>
       <Header />
@@ -115,13 +140,36 @@ const DashboardCompany: React.FC = () => {
               <h1>Pedidos Pendentes</h1>
             </div>
             <div>
-              {orderList.map(
+              {orders.map(
                 (order) =>
-                  order.status == 1 && (
+                  order.status === 1 && (
                     <Item key={order.id_order}>
                       <div>
+                        <strong>
+                          {'Pedido feito às: ' +
+                            new Date(order.created_at).getHours() +
+                            ':' +
+                            new Date(order.created_at).getMinutes()}
+                        </strong>
                         <strong>{'Descrição: ' + order.description}</strong>
-                        <strong>{'Valor total: ' + order.total_value}</strong>
+                        <strong>{'Valor total: R$' + order.total_value}</strong>
+                        <br />
+                        <div>
+                          {order_items.map(
+                            (items) =>
+                              items.order_id === order.id_order && (
+                                <Item key={items.id_order_item}>
+                                  <strong>{'Prato: ' + items.name}</strong>
+                                  <strong>
+                                    {'Quantidade: ' + items.quantity}
+                                  </strong>
+                                  <strong>
+                                    {'Descrição do prato: ' + items.description}
+                                  </strong>
+                                </Item>
+                              ),
+                          )}
+                        </div>
                         <Button onClick={() => handleAcceptOrder(order)}>
                           Aceitar pedido
                         </Button>
@@ -138,13 +186,36 @@ const DashboardCompany: React.FC = () => {
               <h1>Pedidos ativos</h1>
             </div>
             <div>
-              {orderList.map(
+              {orders.map(
                 (order) =>
-                  order.status == 2 && (
+                  order.status === 2 && (
                     <Item key={order.id_order}>
                       <div>
+                        <strong>
+                          {'Pedido feito às: ' +
+                            new Date(order.created_at).getHours() +
+                            ':' +
+                            new Date(order.created_at).getMinutes()}
+                        </strong>
                         <strong>{'Descrição: ' + order.description}</strong>
-                        <strong>{'Valor total: ' + order.total_value}</strong>
+                        <strong>{'Valor total: R$' + order.total_value}</strong>
+                        <br />
+                        <div>
+                          {order_items.map(
+                            (items) =>
+                              items.order_id === order.id_order && (
+                                <Item key={items.id_order_item}>
+                                  <strong>{'Prato: ' + items.name}</strong>
+                                  <strong>
+                                    {'Quantidade: ' + items.quantity}
+                                  </strong>
+                                  <strong>
+                                    {'Descrição do prato: ' + items.description}
+                                  </strong>
+                                </Item>
+                              ),
+                          )}
+                        </div>
                         <Button onClick={() => handleFinishOrder(order)}>
                           Concluir pedido
                         </Button>
@@ -161,15 +232,38 @@ const DashboardCompany: React.FC = () => {
               <h1>Pedidos de alteração</h1>
             </div>
             <div>
-              {orderList.map(
+              {orders.map(
                 (order) =>
-                  order.status == 3 && (
+                  order.status === 3 && (
                     <Item key={order.id_order}>
                       <div>
+                        <strong>
+                          {'Pedido feito às: ' +
+                            new Date(order.created_at).getHours() +
+                            ':' +
+                            new Date(order.created_at).getMinutes()}
+                        </strong>
                         <strong>{'Descrição: ' + order.description}</strong>
-                        <strong>{'Valor total: ' + order.total_value}</strong>
+                        <strong>{'Valor total: R$' + order.total_value}</strong>
+                        <br />
+                        <div>
+                          {order_items.map(
+                            (items) =>
+                              items.order_id === order.id_order && (
+                                <Item key={items.id_order_item}>
+                                  <strong>{'Prato: ' + items.name}</strong>
+                                  <strong>
+                                    {'Quantidade: ' + items.quantity}
+                                  </strong>
+                                  <strong>
+                                    {'Descrição do prato: ' + items.description}
+                                  </strong>
+                                </Item>
+                              ),
+                          )}
+                        </div>
                         <Button onClick={() => handleAlterOrder(order)}>
-                          Aceitar alterações
+                          Aceitar pedido de alteração
                         </Button>
                       </div>
                     </Item>
