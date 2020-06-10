@@ -129,3 +129,9 @@ Parâmetros necessários:
 --*auth* GET - Recebe todas as orders da company
 Parâmetros necessários:
 JWT
+
+**/orders**
+
+--*auth* GET - Recebe todos os items de uma order
+Parâmetros necessários:
+[QUERYPARAM] com id da order

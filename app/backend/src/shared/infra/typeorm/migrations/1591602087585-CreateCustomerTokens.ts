@@ -26,12 +26,12 @@ export default class CreateCustomerTokens1591602087585
                     },
                     {
                         name: 'created_at',
-                        type: 'timestamp',
+                        type: 'timestamp with time zone',
                         default: 'now()',
                     },
                     {
                         name: 'updated_at',
-                        type: 'timestamp',
+                        type: 'timestamp with time zone',
                         default: 'now()',
                     },
                 ],
@@ -49,7 +49,7 @@ export default class CreateCustomerTokens1591602087585
         );
     }
 
-    public async down(queryRunner: QueryRunner): Promise<any> {
+    public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('customer_tokens');
     }
 }

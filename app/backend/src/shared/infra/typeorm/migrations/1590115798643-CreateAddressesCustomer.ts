@@ -8,8 +8,19 @@ export default class CreateAdressesCustomer1590115798643
                 name: 'addresses_customer',
                 columns: [
                     {
+                        name: 'id_address_customer',
+                        type: 'uuid',
+                        isPrimary: true,
+                        generationStrategy: 'uuid',
+                        default: 'uuid_generate_v4()',
+                    },
+                    {
                         name: 'customer_id',
                         type: 'uuid',
+                    },
+                    {
+                        name: 'cep',
+                        type: 'varchar',
                     },
                     {
                         name: 'state',
@@ -41,12 +52,12 @@ export default class CreateAdressesCustomer1590115798643
                     },
                     {
                         name: 'created_at',
-                        type: 'timestamp',
+                        type: 'timestamp with time zone',
                         default: 'now()',
                     },
                     {
                         name: 'updated_at',
-                        type: 'timestamp',
+                        type: 'timestamp with time zone',
                         default: 'now()',
                     },
                 ],
