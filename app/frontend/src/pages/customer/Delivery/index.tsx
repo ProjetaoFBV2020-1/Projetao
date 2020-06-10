@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import {FiMinusCircle, FiPlusCircle} from 'react-icons/fi'
 import { Container, Content, Cart, Grid, ItemBox, CartItem } from './styles';
 import Header from '../../../components/Header';
 import api from '../../../services/api';
@@ -119,6 +119,10 @@ const Delivery: React.FC = () => {
       <Container>
         <Content>
           <Grid>
+            <section>
+            <h1>Menu</h1>
+            </section>
+            <section>
             {itemList.map((item) => (
               <button
                 onClick={() => {
@@ -126,22 +130,26 @@ const Delivery: React.FC = () => {
                 }}
               >
                 <ItemBox key={item.id_item}>
-                  <div>
-                    <div>
+                  <div className="container">
+                    
+                    <div className="content">
                       <strong>{item.name}</strong>
                       <strong>{item.description}</strong>
                       <strong>{item.price}</strong>
                     </div>
-                  </div>
-                  <div>
-                    <img
-                      src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
-                      alt={item.id_item}
-                    />
+                    
+                  
+                    <div className="content">
+                      <img
+                        src="https://avatars2.githubusercontent.com/u/55264885?s=460&u=9935b27a5aec8201acbd5cf9af80728d3dd728ba&v=4"
+                        alt={item.id_item}
+                      />
+                    </div>
                   </div>
                 </ItemBox>
               </button>
             ))}
+            </section>
           </Grid>
         </Content>
         <Cart>
@@ -151,12 +159,20 @@ const Delivery: React.FC = () => {
           </header>
           {cart.map((item) => (
             <CartItem>
+              <section className="cartcontent">
               <div>
-                <h1>
-                  {item.quantity}x {item.name}
-                </h1>
-                <h1> R$ {item.price}</h1>
+                <h2>
+                  {item.quantity}x {item.name} 
+                </h2>
+                <h2> R$ {item.price}</h2>
               </div>
+              <div className="fiButtons">
+                <FiPlusCircle></FiPlusCircle>
+                
+                <FiMinusCircle></FiMinusCircle>
+                
+              </div>
+              </section>
             </CartItem>
           ))}
           <div>
