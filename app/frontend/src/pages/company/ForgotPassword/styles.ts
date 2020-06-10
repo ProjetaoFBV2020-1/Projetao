@@ -1,20 +1,22 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import SignUpBackgroundImg from '../../../assets/sign-up-background-img.jpg';
+import SignInBackgroundImg from '../../../assets/sign-in-background-img.jpg';
+import { animated } from 'react-spring/renderprops-universal';
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
 `;
+
 export const Content = styled.div`
   align-content: center;
   width: 100%;
   max-width: 700px;
 `;
 
-const appearFromRight = keyframes`
+const appearFromLeft = keyframes`
   from{
     opacity:0;
     transform: translateX(-50px);
@@ -31,10 +33,12 @@ export const AnimationContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: ${appearFromRight} 1s;
+  animation: ${appearFromLeft} 1s;
+
   > img {
     max-width: 80%;
   }
+
   form {
     margin: 40px 0;
     width: 340px;
@@ -75,6 +79,6 @@ export const AnimationContainer = styled.div`
 `;
 export const Background = styled.div`
   flex: 1;
-  background: url(${SignUpBackgroundImg}) no-repeat center;
+  background: url(${SignInBackgroundImg}) no-repeat center;
   background-size: cover;
 `;

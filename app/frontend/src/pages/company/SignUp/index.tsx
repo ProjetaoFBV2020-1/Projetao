@@ -51,7 +51,7 @@ const SignUp: React.FC = () => {
           title: 'Cadastro realizado!',
           description: 'Você já pode fazer seu login',
         });
-        history.push('/');
+        history.push('/signin-company');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -78,8 +78,16 @@ const SignUp: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu Cadastro</h1>
             <Input name="cnpj" icon={FiUser} placeholder="Cnpj" />
-            <Input name="company_name" icon={FiUser} placeholder="Razão Social" />
-            <Input name="trade_name" icon={FiUser} placeholder="Nome Fantasia" />
+            <Input
+              name="company_name"
+              icon={FiUser}
+              placeholder="Razão Social"
+            />
+            <Input
+              name="trade_name"
+              icon={FiUser}
+              placeholder="Nome Fantasia"
+            />
             <Input name="email" icon={FiMail} placeholder="E-mail" />
             <Input
               name="password"

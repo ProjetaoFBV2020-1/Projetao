@@ -41,7 +41,7 @@ const ResetPassword: React.FC = () => {
         console.log(data);
         data.token = token;
 
-        await api.post('/passwordCustomer/reset', data);
+        await api.post('/passwordCompany/reset', data);
         addToast({
           type: 'success',
           title: 'Senha alterada com sucesso!',
@@ -81,7 +81,7 @@ const ResetPassword: React.FC = () => {
             />
             <Button type="submit">Cadastrar</Button>
           </Form>
-          <Link to="/">
+          <Link to="/signin-company">
             <FiArrowLeft />
             Voltar para logon
           </Link>
