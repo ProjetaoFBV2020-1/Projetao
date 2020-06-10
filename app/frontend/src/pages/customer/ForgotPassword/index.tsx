@@ -40,12 +40,12 @@ const ForgotPassword: React.FC = () => {
         });
         // recuperação de senha
 
-        /* await api.post('/password/forgot', {
+        await api.post('/passwordCustomer/forgot', {
           email: data.email,
-        }); */
+        });
         addToast({
           type: 'success',
-          title: 'E-mail de recuperaçãoo enviado',
+          title: 'E-mail de recuperação enviado',
           description:
             'enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada',
         });

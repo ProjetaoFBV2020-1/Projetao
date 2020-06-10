@@ -15,6 +15,8 @@ import DashBoardCompany from '../pages/company/Dashboard';
 import ProfileCustomer from '../pages/customer/Profile';
 import ProfileCompany from '../pages/company/ProfileCompany';
 import Order from '../pages/customer/Order';
+import Reset_password from '../pages/customer/ResetPassword';
+
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
@@ -30,6 +32,11 @@ const Routes: React.FC = () => (
     <Route path="/finished-orders" component={FinishedOrders} isPrivate />
     <Route path="/orders" component={Orders} isPrivate />
     <Route path="/order/:company/:status/:id" component={Order} isPrivate />
+    <Route
+      path="/reset-password-Customer"
+      component={Reset_password}
+      isPrivate
+    />
   </Switch>
 );
 
