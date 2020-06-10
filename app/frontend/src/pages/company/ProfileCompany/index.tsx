@@ -7,7 +7,7 @@ import Button from '../../../components/Button';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import Input from '../../../components/Input';
-import { FiLogIn, FiMail, FiPhone, FiArrowLeft } from 'react-icons/fi';
+import { FiLogIn, FiMail, FiArrowLeft } from 'react-icons/fi';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import { useToast } from '../../../hooks/toast';
 import * as Yup from 'yup';
