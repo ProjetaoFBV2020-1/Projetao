@@ -23,13 +23,12 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
 
-   img {
+  img {
     height: 80px;
   }
-  
-  
+
   button {
-    margin-left:20px;
+    margin-left: 20px;
     background: transparent;
     border: 0;
 

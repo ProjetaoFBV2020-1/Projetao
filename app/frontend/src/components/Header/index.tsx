@@ -23,7 +23,8 @@ const Header: React.FC = () => {
           />
           <div>
             <span>Bem-vindo,</span>
-            <strong>{user.name}</strong>
+            {userType === 'Customer' && <strong>{user.name}</strong>}
+            {userType === 'Company' && <strong>{user.company_name}</strong>}
           </div>
         </Profile>
         {userType === 'Customer' && (

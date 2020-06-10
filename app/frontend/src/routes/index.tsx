@@ -14,7 +14,7 @@ import FinishedOrders from '../pages/company/FinishedOrders';
 import DashBoardCompany from '../pages/company/Dashboard';
 import ProfileCustomer from '../pages/customer/Profile';
 import ProfileCompany from '../pages/company/ProfileCompany';
-
+import Order from '../pages/customer/Order';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
@@ -29,6 +29,7 @@ const Routes: React.FC = () => (
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/finished-orders" component={FinishedOrders} isPrivate />
     <Route path="/orders" component={Orders} isPrivate />
+    <Route path="/order" component={Order} isPrivate />
   </Switch>
 );
 

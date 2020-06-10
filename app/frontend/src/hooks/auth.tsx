@@ -5,6 +5,7 @@ import { string } from 'yup';
 interface User {
   id: string;
   name: string;
+  company_name: string;
 }
 
 interface SignInCredentials {

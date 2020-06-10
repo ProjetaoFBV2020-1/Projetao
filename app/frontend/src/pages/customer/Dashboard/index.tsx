@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import { Link } from 'react-router-dom';
 import api from '../../../services/api';
 import { FiEdit } from 'react-icons/fi';
+import Button from '../../../components/Button';
 
 interface company {
   cnpj: string;
@@ -25,6 +26,10 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <Header />
+      <StyledLink type="button" to="/orders">
+        <Button>Orders</Button>
+      </StyledLink>
+
       <Content>
         <Schedule>
           <h1>Dale boy</h1>
