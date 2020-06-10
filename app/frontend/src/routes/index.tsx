@@ -19,6 +19,7 @@ import Order from '../pages/customer/Order';
 import ResetPasswordCustomer from '../pages/customer/ResetPassword';
 import ResetPasswordCompany from '../pages/company/ResetPassword';
 import CreateItem from '../pages/company/CreateItem';
+import OrdersCompany from '../pages/company/Orders';
 
 
 const Routes: React.FC = () => (
@@ -37,6 +38,7 @@ const Routes: React.FC = () => (
     <Route path="/finished-orders" component={FinishedOrders} isPrivate />
     <Route path="/orders" component={Orders} isPrivate />
     <Route path="/order/:company/:status/:id" component={Order} isPrivate />
+    <Route path="/orders-company" component={OrdersCompany} isPrivate />
     <Route path="/create-item" component={CreateItem} isPrivate />
     <Route
       path="/reset-password-Customer/:token"

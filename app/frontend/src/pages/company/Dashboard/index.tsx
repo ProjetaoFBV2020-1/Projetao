@@ -135,7 +135,7 @@ const DashboardCompany: React.FC = () => {
   return (
     <>
       <Header />
-      <Link to= '/finished-orders'>
+      <Link to= '/orders-company'>
       <Button>Pedidos finalizados</Button>
       </Link>
       <Link to= '/create-item'>

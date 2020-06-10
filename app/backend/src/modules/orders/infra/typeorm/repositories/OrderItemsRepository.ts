@@ -25,7 +25,7 @@ class OrdersItemsRepository implements IOrderItemsRepository {
         const orderItems = await this.ormRepository.find({
             where: { order_id },
         });
-        console.log(orderItems);
+
         return orderItems;
     }
 
@@ -49,7 +49,7 @@ class OrdersItemsRepository implements IOrderItemsRepository {
         const order_items = await this.ormRepository.find({
             where: { order_id: In(order_id) },
         });
-        console.log(order_items);
+
         return order_items;
     }
 
