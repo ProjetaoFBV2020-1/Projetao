@@ -18,7 +18,7 @@ export const Cart = styled.div`
   flex-direction: column;
   height: 100vh;
   background-color: #312e38;
-
+  padding: 30px;
   width: 400px;
   max-width: 1120px;
   box-shadow: rgba(0, 0, 0, 0.3) -3px 0px 10px -5px;
@@ -35,7 +35,7 @@ export const Cart = styled.div`
       font-size: 1.375rem;
       font-weight: 500;
     }
-    margin: 0 30px;
+    margin: 0 ;
     padding: 20px 0;
   }
    
@@ -44,6 +44,7 @@ export const Cart = styled.div`
    
     display:flex;
     justify-content:center;
+    flex-direction: column;
     >h3 {
     margin: 0 30px;
     padding: 20px 0;
@@ -54,6 +55,7 @@ export const ItemBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   div {
     > div {
       display: flex;
@@ -66,7 +68,8 @@ export const ItemBox = styled.div`
   }
 `;
 export const Grid = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: row;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
   height: 200px;
@@ -78,7 +81,7 @@ export const Grid = styled.div`
 `;
 
 export const CartItem = styled.div`
-  max-height: 60vh;
+  max-height: 100px;
   > div {
     display: flex;
     justify-content: space-between;

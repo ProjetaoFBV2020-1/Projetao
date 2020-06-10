@@ -54,7 +54,7 @@ export default class SendForgotPasswordEmailService {
                 file: forgotPasswordTemplate,
                 variables: {
                     name: company.trade_name,
-                    link: `http://localhost:3000/reset_password?token=${tokenCompany.token}`,
+                    link: `http://localhost:3000/reset-password-company/${tokenCompany.token}`,
                 },
             },
         });
