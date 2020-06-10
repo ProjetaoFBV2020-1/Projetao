@@ -31,7 +31,7 @@ const Route: React.FC<RouteProps> = ({
                 ? '/'
                 : userType === 'Customer'
                 ? '/dashboard'
-                : '/dashboardCompany',
+                : '/dashboard-company',
               state: { from: location },
             }}
           />

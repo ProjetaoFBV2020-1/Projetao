@@ -10,13 +10,16 @@ import Dashboard from '../pages/customer/Dashboard';
 import ForgotPassword from '../pages/customer/ForgotPassword';
 import Delivery from '../pages/customer/Delivery';
 import Orders from '../pages/customer/Orders';
+import FinishedOrders from '../pages/company/FinishedOrders';
 import DashBoardCompany from '../pages/company/Dashboard';
 import ProfileCustomer from '../pages/customer/Profile';
+import ProfileCompany from '../pages/company/ProfileCompany';
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
     <Route path="/profile-customer" component={ProfileCustomer} isPrivate />
+    <Route path="/profile-company" component={ProfileCompany} isPrivate />
     <Route path="/signin-company" exact component={SignInCompany} />
     <Route path="/dashboard-company" component={DashBoardCompany} isPrivate />
     <Route path="/signup" component={SignUp} />
@@ -24,6 +27,7 @@ const Routes: React.FC = () => (
     <Route path="/forgot-password" component={ForgotPassword} />
     <Route path="/delivery/:companyName/:id" component={Delivery} isPrivate />
     <Route path="/dashboard" component={Dashboard} isPrivate />
+    <Route path="/finished-orders" component={FinishedOrders} isPrivate />
     <Route path="/orders" component={Orders} isPrivate />
   </Switch>
 );

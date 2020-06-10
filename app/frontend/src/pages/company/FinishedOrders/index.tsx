@@ -17,7 +17,7 @@ interface Order {
 const Order: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([] as Order[]);
   useEffect(() => {
-    api.get<Order[]>('/ordersCustomer').then((response) => {
+    api.get<Order[]>('/ordersCompany').then((response) => {
       setOrders(response.data);
       console.log(response.data[0]);
     });
@@ -29,9 +29,9 @@ const Order: React.FC = () => {
       <Container>
         <h1>Pedidos</h1>
         <ul>
-          {orders.map((order) => (
+          {orders.map(
+            (order) => order.status == 4 && (
             <div key={order.id_order}>
-              <h1>{order.status}</h1>
               <h3>{order.description}</h3>
             </div>
           ))}

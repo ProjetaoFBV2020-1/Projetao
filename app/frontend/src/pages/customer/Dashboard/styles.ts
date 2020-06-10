@@ -7,6 +7,7 @@ export const Content = styled.div`
   max-width: 1120px;
   margin: 64px auto;
   display: flex;
+  
   flex-direction: column;
 
   h1 {
