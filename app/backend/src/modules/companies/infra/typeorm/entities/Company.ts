@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import Item from '@modules/items/infra/typeorm/entities/Item';
 import Order from '@modules/orders/infra/typeorm/entities/Order';
+import AddressCompany from '@modules/companies/infra/typeorm/entities/AddressCompany';
 import PhoneCompany from './PhoneCompany';
-import AddressCompany from './AddressCompany';
 
 @Entity('companies')
 class Company {

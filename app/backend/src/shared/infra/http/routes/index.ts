@@ -21,6 +21,8 @@ import passwordCustomerRouter from '@modules/customers/infra/http/routes/passwor
 import profileCompanyRouter from '@modules/companies/infra/http/routes/profileCompany.routes';
 import profileCustomerRouter from '@modules/customers/infra/http/routes/profileCustomer.routes';
 
+import addressesCompanyRouter from '@modules/companies/infra/http/routes/addressesCompany.routes';
+
 const routes = Router();
 
 routes.use('/companies', companiesRouter);
@@ -38,5 +40,7 @@ routes.use('/profileCompany', profileCompanyRouter);
 routes.use('/sessionsCustomer', sessionsCustomerRouter);
 routes.use('/passwordCustomer', passwordCustomerRouter);
 routes.use('/profileCustomer', profileCustomerRouter);
+
+routes.use('/addressCompany', addressesCompanyRouter);
 
 export default routes;

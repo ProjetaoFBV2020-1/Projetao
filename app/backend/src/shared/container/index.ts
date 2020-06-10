@@ -23,6 +23,9 @@ import CompanyTokensRepository from '@modules/companies/infra/typeorm/repositori
 import CustomerTokensRepository from '@modules/customers/infra/typeorm/repositories/CustomerTokensRepository';
 import ICustomerTokensRepository from '@modules/customers/repositories/ICustomerTokensRepository';
 
+import AddressCompaniesRepository from '@modules/companies/infra/typeorm/repositories/AddressCompaniesRepository';
+import IAddressCompaniesRepository from '@modules/companies/repositories/IAddressCompaniesRepository';
+
 container.registerSingleton<IItemsRepository>(
     'ItemsRepository',
     ItemsRepository,
@@ -56,4 +59,9 @@ container.registerSingleton<ICompanyTokensRepository>(
 container.registerSingleton<ICustomerTokensRepository>(
     'CustomerTokensRepository',
     CustomerTokensRepository,
+);
+
+container.registerSingleton<IAddressCompaniesRepository>(
+    'AddressCompaniesRepository',
+    AddressCompaniesRepository,
 );

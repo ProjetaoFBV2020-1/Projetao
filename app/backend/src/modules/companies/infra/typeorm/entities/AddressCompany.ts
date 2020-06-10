@@ -32,6 +32,9 @@ class AdressCompany {
     @Column()
     reference: string;
 
+    @Column()
+    cep: string;
+
     @CreateDateColumn()
     created_at: Date;
 

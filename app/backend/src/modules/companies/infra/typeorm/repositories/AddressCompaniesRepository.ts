@@ -19,7 +19,7 @@ class AddressCompaniesRepository implements IAddressCompaniesRepository {
         return address;
     }
 
-    public async findByCompanyId(
+    public async findAddressByCompanyId(
         company_id: string,
     ): Promise<AddressCompany | undefined> {
         const findAddress = this.ormRepository.findOne({
@@ -30,6 +30,10 @@ class AddressCompaniesRepository implements IAddressCompaniesRepository {
 
     public async save(addressCompany: AddressCompany): Promise<AddressCompany> {
         return this.ormRepository.save(addressCompany);
+    }
+
+    public async delete(addressCompany: AddressCompany): Promise<void> {
+        this.ormRepository.remove(addressCompany);
     }
 }
 

@@ -1,8 +1,11 @@
-import ICreateAddressCompanyDTO from '../dtos/ICreateAddressCompanyDTO';
-import AddressCompany from '../infra/typeorm/entities/AddressCompany';
+import ICreateAddressCompanyDTO from '@modules/companies/dtos/ICreateAddressCompanyDTO';
+import AddressCompany from '@modules/companies/infra/typeorm/entities/AddressCompany';
 
 export default interface IAddressCompaniesRepository {
-    findByCompanyId(company_id: string): Promise<AddressCompany | undefined>;
+    findAddressByCompanyId(
+        company_id: string,
+    ): Promise<AddressCompany | undefined>;
     create(data: ICreateAddressCompanyDTO): Promise<AddressCompany>;
     save(addressCompany: AddressCompany): Promise<AddressCompany>;
+    delete(addressCompany: AddressCompany): Promise<void>;
 }
