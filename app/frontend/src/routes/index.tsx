@@ -29,7 +29,7 @@ const Routes: React.FC = () => (
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/finished-orders" component={FinishedOrders} isPrivate />
     <Route path="/orders" component={Orders} isPrivate />
-    <Route path="/order" component={Order} isPrivate />
+    <Route path="/order/:company/:status/:id" component={Order} isPrivate />
   </Switch>
 );
 

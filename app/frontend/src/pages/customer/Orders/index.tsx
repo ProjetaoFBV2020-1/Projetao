@@ -77,7 +77,9 @@ const Orders: React.FC = () => {
                   <p>{item.name}</p>
                 </div>
               ))}
-              <StyledLink to={`order/${order.id_order}`}>
+              <StyledLink
+                to={`order/${order.company_name}/${order.status}/${order.id_order}`}
+              >
                 <FiLink />
               </StyledLink>
             </div>
